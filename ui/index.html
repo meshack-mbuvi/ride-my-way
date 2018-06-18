@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Make width of page follow the screen-width of the device-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!--Link for custom styles-->
+	<title>Home | Ride my way</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row navbar" id=myNav>
+			<div class="col-sm-12 col-lg-12">
+				<ul>
+				    <li><a href="./index.html"><i class="fa fa-home "></i>Home</a></li>
+				    <li class="icon"><a href="javascript:void(0);" onclick="toggleResponsive()"><i class="fa fa-bars"></i></a></li>
+				</ul> 
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 col-md-3">
+				
+			</div>
+			<div class="col-sm-12 col-md-6 text-center div-center">
+				<br>
+				<h1>Ride in style | Enjoy fantastic offers.</h1>
+
+			</div>
+
+			<div class="col-sm-12 col-md-3">
+				
+			</div>
+		</div>
+
+		<!--Login form here-->
+		<div class="row ">
+			<div class="col-sm-12 col-md-4">
+				
+			</div>
+			<div class="col-sm-12 col-md-4 text-center div-center" style="border: solid 1px;border-radius: 5px;">
+			    <!--user sign-in form-->
+
+			    <form action="user.html" method="GET">
+                
+	            	<div class="col-sm-12 ">
+	            		<label for="email"><i class="fa fa-envelope fa-fw"></i>Email or Username:</label>
+	                	<input type="text" placeholder="Email or username" name="email" required>
+	                </div>
+	                <div class="col-sm-12">
+						<label for="pwd"><i class="fa fa-lock fa-fw"></i>Enter password :</label>
+					    <input type="password" name="password" placeholder="Enter password" required>
+					</div>
+						<p><a href="./recover-password.html">Forgot your password?</a></p>
+					<div class="col-sm-12">
+						<button type="submit" name="submit" id="submit" class="btn-primary"><i class="fa fa-send-o fa-fw"></i>Login</button>
+					</div>	
+					<div class="col-sm-12 col-md-6" style="width:100%;clear: both;">
+						<h3>Don't have an account? <br>Sign up <a href="./signup.html"><i class="fa fa-user fa-fw"></i>here</a></h3>
+					</div>				               
+                
+            	</form>
+			</div>
+
+			<div class="col-sm-12 col-md-4">
+				
+			</div>
+		</div>
+
+		<!--footer -->
+		<footer>
+			<p>Mbuvi <i class="fa fa-copyright fa-fw"></i> 2018. All Rights Reserved.</p>
+		</footer>
+    </div>
+</body>
+
+</html>
