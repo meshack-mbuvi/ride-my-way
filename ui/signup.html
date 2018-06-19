@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Make width of page follow the screen-width of the device-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8"> 
+	
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!--Link for custom styles-->
+	<title>Home | Ride my way</title>
+
+	<!--JS files -->
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row navbar" id=myNav>
+			<div class="col-sm-12 col-lg-12">
+				<ul>
+				    <li><a href="./index.html"><i class="fa fa-home "></i>Home</a></li>
+				    <li class="right"><a href="./index.html"><i class="fa fa-sign-up fa-fw"></i>Sign in</a></li>
+				    <li class="icon"><a href="javascript:void(0);" onclick="toggleResponsive()"><i class="fa fa-bars"></i></a></li>
+				</ul> 
+			</div>
+		</div>
+
+		
+		<div class="row ">
+			<div class="col-sm-12 col-md-4">
+				
+			</div>
+
+			<!--signup form to create an account-->
+			<div class="col-sm-12 col-md-4 text-center div-center div-with-border">
+			    <!--user sign-in form-->
+
+			    <form action="user.html" method="GET">
+                
+	            	<div class="col-sm-12 ">
+	            		<label for="email"><i class="fa fa-envelope fa-fw"></i>Email or Username:</label>
+	                	<input type="email" placeholder="Email Address" name="email" required>
+	                </div>
+	                <div class="col-sm-12 ">
+	            		<label for="username"><i class="fa fa-user fa-fw"></i>Username:</label>
+	                	<input type="text" placeholder="Username" name="username" required>
+	                </div>
+	                <div class="col-sm-12">
+						<label for="pwd"><i class="fa fa-lock fa-fw"></i>Enter password :</label>
+					    <input type="password" name="password" placeholder="Enter password" required>
+					</div>
+					<div class="col-sm-12">
+						<label for="rpt_pwd"><i class="fa fa-lock fa-fw"></i>Confirm password :</label>
+					    <input type="password" name="rpt_password" placeholder="Re-enter password" required>
+					</div>
+					<div class="col-sm-12">
+						<label for="pwd">Are you a driver? <input type="checkbox" name="chk_driver" id="chk_driver" onclick="showHideLicense()"></label>
+					    
+					</div>
+					<div class="row hide" id="driver_license">
+						<div class="col-sm-12">
+							<label for="dr-license">Driving License No:</label>
+					    	<input type="text" name="dr-license" id="dr-license" placeholder="Driving license number" required>
+						</div>
+						<div class="col-sm-12">
+							<label for="rpt_pwd">Car plate No:</label>
+						    <input type="text" name="car_reg" id="car_reg" placeholder="Your car plate number" required>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<button type="submit" name="submit" id="submit" class="btn-primary"><i class="fa fa-send-o fa-fw"></i>Create Account</button>
+					</div>	
+					<div class="col-sm-12">
+						<h3>Already got an account with us? <br>Log in <a href="./index.html"><i class="fa fa-user fa-fw"></i>here</a></h3>
+					</div>				               
+                
+            	</form>
+            	<!--End of sign-up form -->
+			</div>
+
+			<div class="col-sm-12 col-md-4">
+				
+			</div>
+		</div>
+
+		<!--footer -->
+		<footer>
+			<p>Mbuvi <i class="fa fa-copyright fa-fw"></i> 2018. All Rights Reserved.</p>
+		</footer>
+    </div>
+</body>
+
+</html>
