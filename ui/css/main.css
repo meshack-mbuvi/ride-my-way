@@ -98,6 +98,10 @@ Show link that opens and closes the navbar*/
 .hide{
     display: none;
 }
+/*Display elements with this class*/
+.show{
+    display: block;
+}
 /*center text*/
 .text-center{
     text-align: center;
@@ -191,7 +195,6 @@ h1 a,h3 a{
 a {
     color: #3e92cc;
 }
-
 .div-with-border{
     border: solid 1px;border-radius: 5px;
     margin-top: 10px;
