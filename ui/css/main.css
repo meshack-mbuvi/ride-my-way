@@ -1,0 +1,203 @@
+/*include padding and border in the total width and height of elements */
+* {
+    box-sizing: border-box;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+    float: left;
+    padding: 15px;
+}
+
+    /* For tablets: */
+@media only screen and (min-width: 600px) {
+    .col-sm-1 {width: 8.33%;}
+    .col-sm-2 {width: 16.66%;}
+    .col-sm-3 {width: 25%;}
+    .col-sm-4 {width: 33.33%;}
+    .col-sm-5 {width: 41.66%;}
+    .col-sm-6 {width: 50%;}
+    .col-sm-7 {width: 58.33%;}
+    .col-sm-8 {width: 66.66%;}
+    .col-sm-9 {width: 75%;}
+    .col-sm-10 {width: 83.33%;}
+    .col-sm-11 {width: 91.66%;}
+    .col-sm-12 {width: 100%;}
+}
+
+    /* For small laptops: */
+@media only screen and (min-width: 992px) {
+    .col-md-1 {width: 8.33%;}
+    .col-md-2 {width: 16.66%;}
+    .col-md-3 {width: 25%;}
+    .col-md-4 {width: 33.33%;}
+    .col-md-5 {width: 41.66%;}
+    .col-md-6 {width: 50%;}
+    .col-md-7 {width: 58.33%;}
+    .col-md-8 {width: 66.66%;}
+    .col-md-9 {width: 75%;}
+    .col-md-10 {width: 83.33%;}
+    .col-md-11 {width: 91.66%;}
+    .col-md-12 {width: 100%;}
+}
+    /* For Laptops and desktops: */
+@media only screen and (min-width: 1200px) {
+    .col-lg-1 {width: 8.33%;}
+    .col-lg-2 {width: 16.66%;}
+    .col-lg-3 {width: 25%;}
+    .col-lg-4 {width: 33.33%;}
+    .col-lg-5 {width: 41.66%;}
+    .col-lg-6 {width: 50%;}
+    .col-lg-7 {width: 58.33%;}
+    .col-lg-8 {width: 66.66%;}
+    .col-lg-9 {width: 75%;}
+    .col-lg-10 {width: 83.33%;}
+    .col-lg-11 {width: 91.66%;}
+    .col-lg-12 {width: 100%;}
+}
+/*when screen is less than 600px wide, hide all links except for the first one("Home"). 
+Show link that opens and closes the navbar*/
+@media screen and (max-width: 600px) {
+    .navbar li:not(:first-child){
+        display: none;
+    }
+    .navbar li.icon{
+        float: right;
+        display: block;
+    }
+    /*responsive class is added with javascript when user clicks on the icon.
+    This class handles display for small screens*/
+    .navbar.responsive{
+        position: relative;
+    }
+    .navbar.responsive li.icon{
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .navbar.responsive li{
+        float: none !important;
+        display: block;
+        text-align: left;
+    }
+}
+.row::before{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.containter{
+    padding-left: 16px;
+    padding-right: 16px;
+    margin: 0 16px 0 16px;
+    min-height: 100%;
+}
+/*Hide elements with this class */
+.hide{
+    display: none;
+}
+/*center text*/
+.text-center{
+    text-align: center;
+}
+
+/*style form and its elements*/
+form{
+    padding:0 10px 0 10px;
+
+}
+
+input[type=text], input[type=password], input[type=email], button[type=submit]{
+    width: 100%;
+    display: inline-block;
+
+    
+}
+label, input {
+
+    font-size: 18px;
+    text-align: center;
+}
+/*style navbar*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/*hide link that opens and closes the navbar on small screens*/
+.icon{
+    display: none;
+}
+
+/*navbar,footer */
+.navbar, footer{
+    padding: 0px;
+    overflow: hidden;
+    border-radius: 5px; 
+    background-color: #32936f;
+    
+}
+footer{
+    width: 99%;
+    text-align: center;
+    bottom: 0px !important;
+    position: fixed;
+
+}
+.navbar, footer, li a, button{
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+
+}
+.btn-primary{
+    background-color: #32936f;
+}
+#submit{
+    display: inline-block;
+    width:auto;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+a:hover, a.active{
+    background-color:#fff;
+    color: #32936f;
+}
+h1 a,h3 a{
+    background-color:#32936f;
+    color: #fff;
+}
+a {
+    color: #3e92cc;
+}
+
+.div-with-border{
+    border: solid 1px;border-radius: 5px;
+    margin-top: 10px;
+}
+
+/*elements with this class are displayed on the right*/
+.right{
+    float: right !important;
+}
