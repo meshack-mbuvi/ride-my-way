@@ -106,6 +106,12 @@ Show link that opens and closes the navbar*/
 .text-center{
     text-align: center;
 }
+/*center elements in div*/
+.div-center{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
 
 /*style form and its elements*/
 form{
@@ -203,4 +209,33 @@ a {
 /*elements with this class are displayed on the right*/
 .right{
     float: right !important;
+}
+.car_image{
+    float: left;
+}
+.car_image img{
+    width: 300px;
+    height: 300px;
+    border-radius: 40%;
+    border:1px solid #32936f;
+}
+.ride_details{
+    padding: 16px;
+    margin-top: 16px;
+
+}
+.ride_details p{
+    font-size: 1.3em;
+}
+.label{
+    color: #32936f;
+    display: block;
+    margin:5px 0 5px 0;
+    clear: both;
+}
+.join a{
+    background-color: #32936f !important;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
 }
