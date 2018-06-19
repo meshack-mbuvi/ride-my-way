@@ -210,13 +210,26 @@ img{
     border: solid 1px;
     border-radius: 5px;
 }
+.details{
+    border: 1px solid #32936f;
+    padding:5px;
+    margin:5px 5px 5px 0;
+    border-radius: 5px;
+}
 .details div{
     float: left;
     clear: right;
 }
-.details p>a{
+.details p>span.right>a, .details form>span.right>a{
     float: right;
-    color: #32936f;
+    background-color: #32936f;
+    color: #fff;
+    padding:10px;
+}
+.details form{
+    margin: 0 !important;
+    padding:0 !important;
+    display: inline-block;
 }
 
 .clear{
@@ -244,6 +257,31 @@ img{
 /*color for star ratings*/
 .checked {
     color: #32936f;
+}
+
+.ride_details{
+    padding: 16px;
+    margin-top: 16px;
+
+}
+.ride_details p{
+    font-size: 1.3em;
+}
+.label{
+    color: #32936f;
+    display: inline-block;
+    margin:5px 0 5px 0;
+    clear: left;
+}
+.value{
+    float: right;
+    clear: right;
+}
+.join a{
+    background-color: #32936f !important;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
 }
 
 
