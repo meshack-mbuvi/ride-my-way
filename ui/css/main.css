@@ -91,7 +91,7 @@ Show link that opens and closes the navbar*/
 .containter{
     padding-left: 16px;
     padding-right: 16px;
-    margin: 0 16px 0 16px;
+    margin: 0 16px 50px 16px;
     min-height: 100%;
 }
 /*Hide elements with this class */
@@ -161,6 +161,7 @@ footer{
     text-align: center;
     bottom: 0px !important;
     position: fixed;
+    height: 8%
 
 }
 .navbar, footer, li a, button{
@@ -201,3 +202,48 @@ a {
 .right{
     float: right !important;
 }
+
+/*Style ride offers */
+img{
+    width: 300px;
+    height: 300px;
+    border: solid 1px;
+    border-radius: 5px;
+}
+.details div{
+    float: left;
+    clear: right;
+}
+.details p>a{
+    float: right;
+    color: #32936f;
+}
+
+.clear{
+    clear: both;
+    height: 100px;
+}
+/*tooltip*/
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #134611;
+    color: #e8fccf;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+/*color for star ratings*/
+.checked {
+    color: #32936f;
+}
+
+
