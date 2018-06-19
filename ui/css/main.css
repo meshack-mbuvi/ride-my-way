@@ -91,7 +91,7 @@ Show link that opens and closes the navbar*/
 .containter{
     padding-left: 16px;
     padding-right: 16px;
-    margin: 0 16px 0 16px;
+    margin: 0 16px 50px 16px;
     min-height: 100%;
 }
 /*Hide elements with this class */
@@ -165,6 +165,7 @@ footer{
     text-align: center;
     bottom: 0px !important;
     position: fixed;
+    height: 8%
 
 }
 .navbar, footer, li a, button{
@@ -203,4 +204,84 @@ a {
 /*elements with this class are displayed on the right*/
 .right{
     float: right !important;
+}
+/*Style ride offers */
+img{
+    width: 300px;
+    height: 300px;
+    border: solid 1px;
+    border-radius: 5px;
+}
+.details{
+    border: 1px solid #32936f;
+    padding:5px;
+    margin:5px 5px 5px 0;
+    border-radius: 5px;
+}
+.details div{
+    float: left;
+    clear: right;
+}
+.details p>span.right>a, .details form>span.right>a{
+    float: right;
+    background-color: #32936f;
+    color: #fff;
+    padding:10px;
+}
+.details form{
+    margin: 0 !important;
+    padding:0 !important;
+    display: inline-block;
+}
+
+.clear{
+    clear: both;
+    height: 100px;
+}
+/*tooltip*/
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #134611;
+    color: #e8fccf;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+/*color for star ratings*/
+.checked {
+    color: #32936f;
+}
+
+.ride_details{
+    padding: 16px;
+    margin-top: 16px;
+
+}
+.ride_details p{
+    font-size: 1.3em;
+}
+.label{
+    color: #32936f;
+    display: inline-block;
+    margin:5px 0 5px 0;
+    clear: left;
+}
+.value{
+    float: right;
+    clear: right;
+}
+.join a{
+    background-color: #32936f !important;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
 }
