@@ -6,7 +6,7 @@ Ride-my-way App is a carpooling application that provides drivers with the abili
 * user interface for sign-up feature.
 * user interface for viewing available rides.
 * user interface for viewing rides user has requested to join.
-
+* user interface for viewing details about a particular ride offer.
 
 # Getting started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
