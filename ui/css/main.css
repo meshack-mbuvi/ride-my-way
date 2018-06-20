@@ -107,6 +107,13 @@ Show link that opens and closes the navbar*/
     text-align: center;
 }
 
+/*center elements in div*/
+.div-center{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
 /*style form and its elements*/
 form{
     padding:0 10px 0 10px;
@@ -242,8 +249,8 @@ img{
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
-    background-color: #134611;
-    color: #e8fccf;
+    background-color: #32936f;
+    color: #fff;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
@@ -264,6 +271,7 @@ img{
 .ride_details{
     padding: 16px;
     margin-top: 16px;
+    display: block !important;
 
 }
 .ride_details p{
@@ -330,4 +338,12 @@ td a.danger{
 i.fa-plus{
     font-size: 3em;
     text-align: center;
+.car_image img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    
+}
+.car_image{
+    width: 100%
 }
