@@ -270,7 +270,7 @@ img{
 .ride_details p{
     font-size: 1.3em;
 }
-.label{
+.label, .name{
     color: #32936f;
     display: inline-block;
     margin:5px 0 5px 0;
@@ -287,3 +287,30 @@ img{
     padding: 5px;
 }
 
+.profile{
+    float: left;
+    display: inline-block;
+    width: 15%
+}
+
+.profile img{
+    width: 70%;
+    height:70%;
+    border-radius: 50%;
+    margin:10px;
+}
+
+.description{
+    width: 80%;
+    float: right;
+}
+.stars{
+    float: right;
+}
+.comments, .user-details{
+    border-bottom:1px solid;
+    margin-top: 5px;
+}
+.eviewer{
+    float: left;
+}
