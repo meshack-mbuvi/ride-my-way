@@ -205,7 +205,6 @@ a {
 .right{
     float: right !important;
 }
-
 /*Style ride offers */
 img{
     width: 300px;
@@ -287,7 +286,6 @@ img{
     padding: 5px;
 }
 
-
 /*style table*/
 table{
     width: 100%;
@@ -336,4 +334,3 @@ tr:hover{
 .rejected{
     color: Red;
 }
-
