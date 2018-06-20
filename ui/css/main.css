@@ -290,7 +290,6 @@ img{
 .profile{
     float: left;
     display: inline-block;
-    width: 15%
 }
 
 .profile img{
@@ -301,7 +300,6 @@ img{
 }
 
 .description{
-    width: 80%;
     float: right;
 }
 .stars{
@@ -311,6 +309,6 @@ img{
     border-bottom:1px solid;
     margin-top: 5px;
 }
-.eviewer{
+.reviewer{
     float: left;
 }
