@@ -326,12 +326,13 @@ tr:hover{
     text-align: left;
 }
 
-.pending{
+.pending, .fa-exclamation{
     color: #ff8552;
 }
 .accepted, tr .fa-check{
     color: #157f1f;
 }
-.rejected{
+
+.rejected,.fa-times,.fa-ban{
     color: Red;
 }
