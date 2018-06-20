@@ -318,7 +318,7 @@ th, td {
     font-size: 1.4em;
 }
 
-tr:hover, tr td:hover{
+tr:hover{
     background-color: #ade25d;
     color: #157f1f !important;
 }
