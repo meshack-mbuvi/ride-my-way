@@ -25,3 +25,7 @@ function showHideLicense(){
 		car_reg_number.required = false;
 	}
 }
+
+function confirmReject(username){
+	alert(username + " 's request has been rejected!");
+}
