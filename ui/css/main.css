@@ -287,3 +287,10 @@ img{
     padding: 5px;
 }
 
+#new_offer label{
+    float: left;
+}
+#new_offer input,#notes{
+    float: right;
+    width: 200px;
+}
