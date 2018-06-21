@@ -25,6 +25,10 @@ function showHideLicense(){
 		car_reg_number.required = false;
 	}
 }
+function confirmAction(username){
+	if (confirm("Accept " + username + "'s request?" )) {
+		//
+	}
 
 //Join ride here
 function joinRide(){
