@@ -280,7 +280,7 @@ img{
 .ride_details p{
     font-size: 1.3em;
 }
-.label{
+.label, .name{
     color: #32936f;
     display: inline-block;
     margin:5px 0 5px 0;
@@ -358,7 +358,31 @@ th{
 }
 td{
     color: #134611;
+}
+.profile{
+    float: left;
+    display: inline-block;
+}
 
+.profile img{
+    width: 70%;
+    height:70%;
+    border-radius: 50%;
+    margin:10px;
+}
+
+.description{
+    float: right;
+}
+.stars{
+    float: right;
+}
+.comments, .user-details{
+    border-bottom:1px solid;
+    margin-top: 5px;
+}
+.reviewer{
+    float: left;
 }
 th, td {
     text-align: center;
