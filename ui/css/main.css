@@ -407,11 +407,9 @@ tr:hover{
 .pending, .fa-exclamation{
     color: #ff8552;
 }
-
 .accepted, tr .fa-check{
     color: #157f1f;
 }
-
 .rejected,.fa-times,.fa-ban{
     color: Red;
 }
