@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Make width of page follow the screen-width of the device-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8"> 
+	
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!--Link for custom styles-->
+	<title>Home | Ride my way</title>
+
+	<!--JS files -->
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row navbar" id=myNav>
+			<div class="col-sm-12">
+				<ul>
+				    <li><a href="./index.html"><i class="fa fa-home "></i>Home</a></li>
+				    <li><a href="./user.html"><i class="fa fa-car "></i>Ride offers</a></li>
+				    <li><a href="./myrequests.html">My requests</a></li>
+				    <li><a href="./myrides.html"><i class="fa fa-check "></i>My rides</a></li>
+				    <li class="right">
+				    	<div class="dropdown">
+				    		<button class="dropbtn">Mbuvi <i class="fa fa-caret-down"></i></button>
+				    		<div class="drp-content">
+				    			<a href="./profile.html">Profile</a>
+				    		</div>
+				    		
+				    	</div>
+				    </li>
+				    
+				</ul> 
+			</div>
+		</div>
+
+		
+		<div class="row ">
+			<div class="col-sm-12 col-md-4">
+				
+			</div>
+
+			<!--signup form to create an account-->
+			<div class="col-sm-12 col-md-4 text-center div-center div-with-border">
+			    <!--user sign-in form-->
+
+			    <form action="profile.html" method="GET">
+	                <div class="col-sm-12 ">
+	            		<label for="username"><i class="fa fa-user fa-fw"></i>Username:</label>
+	                	<input type="text" placeholder="Username" name="username" required>
+	                </div>
+					<div class="col-sm-12">
+						<label for="pwd">Are you a driver? <input type="checkbox" name="chk_driver" id="chk_driver" onclick="showHideLicense()"></label>
+					    
+					</div>
+					<div class="row hide" id="driver_license">
+						<div class="col-sm-12">
+							<label for="dr-license">Driving License No:</label>
+					    	<input type="text" name="dr-license" id="dr-license" placeholder="Driving license number" required>
+						</div>
+						<div class="col-sm-12">
+							<label for="rpt_pwd">Car plate No:</label>
+						    <input type="text" name="car_reg" id="car_reg" placeholder="Your car plate number" required>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<button type="submit" name="submit" id="submit" class="btn-primary"><i class="fa fa-send-o fa-fw"></i>Udate details</button>
+					</div>			               
+                
+            	</form>
+            	<!--End of sign-up form -->
+			</div>
+
+			<div class="col-sm-12 col-md-4">
+				
+			</div>
+		</div>
+
+		<!--footer -->
+		<footer>
+			<p>Mbuvi <i class="fa fa-copyright fa-fw"></i> 2018. All Rights Reserved.</p>
+		</footer>
+    </div>
+</body>
+
+</html>
