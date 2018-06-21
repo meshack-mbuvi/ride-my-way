@@ -3,11 +3,15 @@ Ride-my-way App is a carpooling application that provides drivers with the abili
 
 # App Functionalities:
 * user interface for `login` with links for password recovery and sign-up forms.
+* user interface for `my rides` where users view all the rides they have already taken.
+* user interface for viewing rides user has requested to join.
+* user interface for joining ride offers.
 * user interface for `sign-up feature`.
 * user interface for `view available rides`.
 * user interface for showing `my rides offered` for a driver.
 * user interface for `viewing details about a particular ride offer`.
 * user interface for driver to view user requests to join ride offer
+
 
 
 # Getting started
