@@ -28,6 +28,10 @@ function showHideLicense(){
 function confirmReject(username){
 	alert(username + " 's request has been rejected!");
 }
+function confirmAction(username){
+	if (confirm("Accept " + username + "'s request?" )) {
+	}
+
 //Join ride here
 function joinRide(){
 	if (confirm("Are you sure you want to join this ride ?"))
