@@ -317,12 +317,31 @@ th, td {
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
-
+/*style for button to join offers*/
+.join{
+    color: #53ff45;
+    background-color:transparent;
+    font-weight:bold;
+    font-size: 1.4em;
+}
 tr:hover{
     background-color: #ade25d;
     color: #157f1f !important;
 }
+.pending, .accepted, .rejected{
+    font-size: 1.4em;
+    text-align: left;
+}
 
+.pending, .fa-exclamation{
+    color: #ff8552;
+}
+.accepted, .fa-check{
+    color: #157f1f;
+}
+.rejected,.fa-times,.fa-ban{
+    color: Red;
+}
 tr .car_icon{
     width: 40px;
     height: 30px;
@@ -341,6 +360,7 @@ td a.danger{
 i.fa-plus{
     font-size: 3em;
     text-align: center;
+}
 .car_image img{
     width: 200px;
     height: 200px;
