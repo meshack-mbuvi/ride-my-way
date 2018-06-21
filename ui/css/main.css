@@ -76,11 +76,15 @@ Show link that opens and closes the navbar*/
         right: 0;
         top: 0;
     }
-    .navbar.responsive li{
+    .navbar.responsive li, .dropbtn, .drp-content{
         float: none !important;
         display: block;
         text-align: left;
     }
+    /*make table behave not as a table*/
+    table, thead, tbody, th, td, tr {
+      display: block; 
+  }
 }
 .row::before{
     content: "";
@@ -296,9 +300,6 @@ img{
     text-align: center;
     padding: 5px;
 }
-.dropdown {
-    /*overflow: hidden;*/
-}
 
 .dropdown .dropbtn {
     font-size: 16px;    
@@ -447,3 +448,10 @@ i.fa-plus{
 .car_image{
     width: 100%
 }
+
+/*/* Force table to not be like tables anymore */ 
+/*@media only screen and (max-width: 500px){*/
+  /*table, thead, tbody, th, td, tr {*/
+      /*display: block; */
+  }
+}*/
