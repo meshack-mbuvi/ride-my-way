@@ -1,5 +1,6 @@
 # ride-my-way
 [![Build Status](https://travis-ci.org/meshack-mbuvi/ride-my-way.svg?branch=master)](https://travis-ci.org/meshack-mbuvi/ride-my-way) [![Coverage Status](https://coveralls.io/repos/github/meshack-mbuvi/ride-my-way/badge.svg?branch=master)](https://coveralls.io/github/meshack-mbuvi/ride-my-way?branch=master)
+
 Ride-my-way App is a carpooling application that provides drivers with the ability to create ride offers and passengers to join the ride offers.
 
 # App Features:
@@ -38,7 +39,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 * Open your favourite browser and point it to ` http://your-server/ride-my-way/ ` to experiment with the app.
 
-# Contriubuting
+# Contributing
 If you want to contribute to this project:
 
     * Fork it!
