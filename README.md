@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/meshack-mbuvi/ride-my-way.svg?branch=master)](https://travis-ci.org/meshack-mbuvi/ride-my-way) [![Coverage Status](https://coveralls.io/repos/github/meshack-mbuvi/ride-my-way/badge.svg?branch=master)](https://coveralls.io/github/meshack-mbuvi/ride-my-way?branch=master)
 Ride-my-way App is a carpooling application that provides drivers with the ability to create ride offers and passengers to join the ride offers.
 
-# App Functionalities:
+# App Features:
 * user interface for viewing driver rating.
 * user interface for `login` capability with links for password recovery and sign-up forms.
 * user interface for `sign-up feature`.
