@@ -336,6 +336,14 @@ tr:hover{
 .pending, .fa-exclamation{
     color: #ff8552;
 }
+
+.accepted, tr .fa-check{
+    color: #157f1f;
+}
+
+.rejected,.fa-times,.fa-ban{
+    color: Red;
+}
 .accepted, .fa-check{
     color: #157f1f;
 }
@@ -361,6 +369,7 @@ i.fa-plus{
     font-size: 3em;
     text-align: center;
 }
+
 .car_image img{
     width: 200px;
     height: 200px;
