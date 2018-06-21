@@ -296,6 +296,51 @@ img{
     text-align: center;
     padding: 5px;
 }
+/*style table*/
+table{
+    width: 100%;
+    background-color: #e8fccf;
+    border-radius: 5px;
+    padding: 2px;
+}
+th{
+    background-color: #32936f;
+    color: #fff;
+    font-size: 1.3em;
+    padding: 5px;
+}
+td{
+    color: #134611;
+
+}
+th, td {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover{
+    background-color: #ade25d;
+    color: #157f1f !important;
+}
+
+tr .car_icon{
+    width: 40px;
+    height: 30px;
+}
+td a{
+    background-color: #32936f;
+    color: #fff;
+    padding:4px;
+    margin:4px;
+    display: inline-block;
+}
+td a.danger{
+    /*color: Red;*/
+    background-color: Red;
+}
+i.fa-plus{
+    font-size: 3em;
+    text-align: center;
 .car_image img{
     width: 200px;
     height: 200px;
