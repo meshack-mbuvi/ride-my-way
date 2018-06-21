@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Make width of page follow the screen-width of the device-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8"> 
+	
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!--Link for custom styles-->
+	<title>New ride offer</title>
+
+	<!--JS files -->
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row navbar" id=myNav>
+			<div class="col-sm-12">
+				<ul>
+				    <li><a href="./index.html"><i class="fa fa-home "></i>Home</a></li>
+				    <li><a href="./user.html"><i class="fa fa-car "></i>Ride offers</a></li>
+				    <li><a href="./driver.html"><i class="fa fa-car "></i>My ride offers</a></li>
+				    <li class="right"><a href="./index.html"><i class="fa fa-user fa-fw"></i>Meshack</a></li>
+				    <li class="icon"><a href="javascript:void(0);" onclick="toggleResponsive()"><i class="fa fa-bars"></i></a></li>
+				</ul> 
+			</div>
+		</div>
+
+		
+		<div class="row ">
+			<div class="col-sm-12 col-md-4">
+				
+			</div>
+
+			<!--signup form to create an account-->
+			<div class="col-sm-12 col-md-4 text-center div-center div-with-border">
+			    <!--user sign-in form-->
+
+			    <form action="driver.html" method="GET" id="new_offer">
+                
+	                <div class="col-sm-12 ">
+	            		<label>Start :</label>
+	                	<input type="text" name="start" id="start">
+					</div>
+					<div class="col-sm-12"><label for="to">To : </label>
+						<input type="text" name="to" id="to">
+	                </div>
+					<div class="col-sm-12">
+						<label for="time">Departure time</label>
+					    <input type="time" id="time" placeholder="time" required>
+					</div>
+					<div class="col-sm-12">
+						<label for="capacity">Capacity :</label>
+					    <input type="number" id="capacity" placeholder="capacity" required>
+					</div>
+					<div class="col-sm-12">
+						<label for="charges">Charges per km:</label>
+					    <input type="number" id="charges" placeholder="charges" required>
+					</div>
+					<div class="col-sm-12">
+						<label for="notes">Notes :</label>
+					    <textarea " id="notes" placeholder="notes about the ride" rows="5" cols="40"></textarea> 
+					</div>
+
+					<div class="col-sm-12">
+						<button type="submit" name="submit" id="submit" class="btn-primary"><i class="fa fa-send-o fa-fw"></i>Save details</button>
+					</div>					               
+                
+            	</form>
+            	<!--End of sign-up form -->
+			</div>
+
+			<div class="col-sm-12 col-md-4">
+				
+			</div>
+		</div>
+		</div>
+		<div class="clear"></div>
+
+		<!--footer -->
+		<footer>
+			<p>Mbuvi <i class="fa fa-copyright fa-fw"></i> 2018. All Rights Reserved.</p>
+		</footer>
+    
+</body>
+
+</html>
