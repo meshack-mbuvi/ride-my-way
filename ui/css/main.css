@@ -353,7 +353,6 @@ td a{
     display: inline-block;
 }
 td a.danger{
-    /*color: Red;*/
     background-color: Red;
 }
 i.fa-plus{
