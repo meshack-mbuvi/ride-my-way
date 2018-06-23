@@ -33,3 +33,11 @@ function joinRide(){
 		location.href = "./user.html";
 	}
 }
+
+function accept(username){
+	alert(username + "'s request has been approved!");
+ }
+
+function rejectRequest(username){
+	alert(username + "'s request has been rejected!");
+}
