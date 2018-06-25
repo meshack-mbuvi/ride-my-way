@@ -3,17 +3,16 @@
 <head>
 	<!--Make width of page follow the screen-width of the device-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<meta charset="UTF-8">
 	
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>User requests</title>
+	<!--Link for custom styles-->
+	<title>My Ride offers</title>
 	<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
 	<div class="container">
-		<div class="row navbar" id=myNav>
+		<div class="row navbar" id="myNav">
 			<div class="col-sm-12">
 				<ul>
 				    <li><a href="./driver.html"><i class="fa fa-home "></i>Home</a></li>
@@ -26,55 +25,56 @@
 				</ul> 
 			</div>
 		</div>
-		<!--begin of my ride offers-->
+
+		<!--ride offers-->
 		<div class="row rides">
-			<div class="col-md-1"></div>
+			<div class="col-sm-12 col-md-1"></div>
 			<div class="col-sm-12 col-md-10">
+				<h1 class="label">Rides you have given</h1>
 				<table>
 					<tr>
-						<th>User</th>
-						<th>Contact</th>
-						<th>pick up point</th>
-						<th>Drop off point</th>
-						<th>Time</th>
-						<th>Accept/Reject</th>
+						<th>Start point</th>
+						<th>Destination</th>
+						<th>Route</th>
+						<th>Start Time</th>
+						<th>Drop off points</th>
+						<th>Type of ride</th>
+						<th>Number. of passengers</th>
 					</tr>
 					<tr>
-						<td>mbuvi</td>
-						<td>071979340</td>						
-						<td>Alsops</td>
-						<td>Ruiru</td>
-						<td>13.00</td>
-				    	<td><a href="./requests.html" onclick="return accept('mbuvi');"><i class="fa fa-user-plus"></i></a>
-
-				    		<a href="./requests.html" onclick="return rejectRequest('mbuvi');" class="danger"><i class="fa fa-user-times"></i></a></td>
+						<td>Thika Town</td>
+						<td>Ruaka town</td>
+						<td>Thika rd - northern by-pass</td>
+						<td>09 June,2018 7.40 am</td>
+						<td>Ruiru, Kahawa west, Two rivers</td>
+						<td>Free</td>
+						<td> 6 </td>
 					</tr>
 					<tr>
-						<td>mbuvi</td>
-						<td>071979340</td>						
-						<td>Alsops</td>
-						<td>Ruiru</td>
-						<td>13.00</td>
-				    	<td><a href="./requests.html" onclick="return accept('mbuvi');"><i class="fa fa-user-plus"></i></a>
+						<td>NIBS college</td>
+						<td>Nairobi Town</td>
+						<td>Thika superhighway</td>
+						<td>10 June,2018 11.40 am</td>
+						<td>KU, Githurai, Pangani</td>
+						<td>Free</td>
+						<td> 4 </td>
+					</tr>
 
-				    		<a href="./requests.html" onclick="return rejectRequest('mbuvi');" class="danger"><i class="fa fa-user-times"></i></a></td>
-					</tr>									
-					
 				</table>
 			</div>
-		</div>
+			<div class="col-sm-12 col-md-1"></div>
+			
+		</div>	
 
-		<!--end-->
-
+		
 	</div>
-
-
 	<!--provide extra space betwen container and footer-->
 	<div class="clear"></div>
 	<!--footer -->
 	<footer>
 		<p>Mbuvi <i class="fa fa-copyright fa-fw"></i> 2018. All Rights Reserved.</p>
 	</footer>
+    </div>
     
 </body>
 
