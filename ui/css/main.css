@@ -178,7 +178,7 @@ footer{
     height: 8%
 
 }
-.navbar, footer, li a, button{
+.navbar, footer, li a, button, h1 a,h3 a{
     color: #fff;
     font-weight: bold;
     font-size: 1.1em;
@@ -201,74 +201,30 @@ a:hover, a.active{
 }
 h1 a,h3 a{
     background-color:#32936f;
-    color: #fff;
 }
 a {
     color: #3e92cc;
 }
-.div-with-border{
-    border: solid 1px;border-radius: 5px;
-    margin-top: 10px;
+.div-with-border, .details{
+    border: 1px solid #32936f;
+    border-radius: 5px;
+    margin-top: 2px;
+    padding:5px;
+}
+.header{
+    color: #32936f;
 }
 
 /*elements with this class are displayed on the right*/
 .right{
     float: right !important;
 }
-/*Style ride offers */
-img{
-    width: 300px;
-    height: 300px;
-    border: solid 1px;
-    border-radius: 5px;
-}
-.details{
-    border: 1px solid #32936f;
-    padding:5px;
-    margin:5px 5px 5px 0;
-    border-radius: 5px;
-}
-.details div{
-    float: left;
-    clear: right;
-}
-.details p>span.right>a, .details form>span.right>button{
-    float: right;
-    background-color: #32936f;
-    color: #fff;
-    padding:10px;
-}
-.details form>span.right>button{
-    border-radius: 5px;
-}
-.details form{
-    margin: 0 !important;
-    padding:0 !important;
-    display: inline-block;
-}
 
 .clear{
     clear: both;
     height: 100px;
 }
-/*tooltip*/
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #32936f;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
 
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
 /*color for star ratings*/
 .checked {
     color: #32936f;
@@ -396,20 +352,9 @@ td a{
     display: inline-block;
 }
 td a.danger{
-    /*color: Red;*/
     background-color: Red;
 }
 i.fa-plus{
     font-size: 3em;
     text-align: center;
 }
-.car_image img{
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    
-}
-.car_image{
-    width: 100%
-}
-
