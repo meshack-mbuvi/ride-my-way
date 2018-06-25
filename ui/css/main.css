@@ -125,7 +125,6 @@ form{
 }
 
 input[type=text], input[type=password], input[type=email], button[type=submit]{
-    width: 100%;
     display: inline-block;
 
     
@@ -359,5 +358,3 @@ i.fa-plus{
     font-size: 3em;
     text-align: center;
 }
-
-
