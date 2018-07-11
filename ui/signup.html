@@ -28,49 +28,63 @@
 
 		
 		<div class="row ">
-			<div class="col-sm-12 col-md-4">
+			<div class="col-sm-12 col-md-3">
 				
 			</div>
 
 			<!--signup form to create an account-->
-			<div class="col-sm-12 col-md-4 text-center div-center div-with-border">
+			<div class="col-sm-12 col-md-6 text-center div-center div-with-border">
 			    <!--user sign-in form-->
 
 			    <form action="index.html" method="GET">
-                
-	            	<div class="col-sm-12 ">
-	            		<label for="email"><i class="fa fa-envelope fa-fw"></i>Email :</label>
-	                	<input type="email" placeholder="Email Address" name="email" required>
-	                </div>
-	                <div class="col-sm-12 ">
-	            		<label for="username"><i class="fa fa-user fa-fw"></i>Username:</label>
-	                	<input type="text" placeholder="Username" name="username" required>
-	                </div>
-	                <div class="col-sm-12 ">
+					<!-- email -->
+					<div class="col-sm-6 col-md-4">
+						<label for="email"><i class="fa fa-envelope fa-fw"></i>Email :</label>
+					</div>
+					<div class="col-sm-6 col-md-8">
+						<input type="email" placeholder="Email Address" name="email" required>
+					</div>
+					<!-- firstname -->
+					<div class="col-sm-6 col-md-4">
+						<label for="fstName"><i class="fa fa-user fa-fw"></i>First Name:</label>
+					</div>
+					<div class="col-sm-6 col-md-8">
+						<input type="text" placeholder="First Name" name="fstName" required>
+					</div>
+					<!-- secondname -->
+					<div class="col-sm-6 col-md-4">
+							<label for="secondname"><i class="fa fa-user fa-fw"></i>Second Name:</label>
+						</div>
+						<div class="col-sm-6 col-md-8">
+							<input type="text" placeholder="Second Name" name="secondname" required>
+						</div>
+					<!-- phone -->
+	                <div class="col-sm-12 col-md-4">
 	            		<label for="phone"><i class="fa fa-phone fa-fw"></i>Phone:</label>
-	                	<input type="tel" placeholder="phone" name="phone" required>
-	                </div>
-	                <div class="col-sm-12">
+					</div>
+					<div class="col-sm-12 col-md-8">
+						<input type="tel" placeholder="Phone number" name="phone" required>
+					</div>
+
+					<!-- password -->
+	                <div class="col-sm-12 col-md-4">
 						<label for="pwd"><i class="fa fa-lock fa-fw"></i>Enter password :</label>
-					    <input type="password" name="password" placeholder="Enter password" required>
 					</div>
-					<div class="col-sm-12">
-						<label for="rpt_pwd"><i class="fa fa-lock fa-fw"></i>Confirm password :</label>
-					    <input type="password" name="rpt_password" placeholder="Re-enter password" required>
+					<div class="col-sm-12 col-md-8">
+						<input type="password" name="pwd" placeholder="Enter password" required>
 					</div>
-					<div class="col-sm-12">
+
+					<!-- confirm password -->
+					<div class="col-sm-12 col-md-4">
+						<label for="rpt-pwd"><i class="fa fa-lock fa-fw"></i>Confirm password :</label>
+					</div>
+					<div class="col-sm-12 col-md-8">
+						<input type="password" name="rpt-pwd" placeholder="Confirm password" required>
+					</div>
+
+					<div class="col-sm-12 col-md-12">
 						<label for="pwd">Are you a driver? <input type="checkbox" name="chk_driver" id="chk_driver" onclick="showHideLicense()"></label>
 					    
-					</div>
-					<div class="row hide" id="driver_license">
-						<div class="col-sm-12">
-							<label for="dr-license">Driving License No:</label>
-					    	<input type="text" name="dr-license" id="dr-license" placeholder="Driving license number" required>
-						</div>
-						<div class="col-sm-12">
-							<label for="rpt_pwd">Car plate No:</label>
-						    <input type="text" name="car_reg" id="car_reg" placeholder="Your car plate number" required>
-						</div>
 					</div>
 					<div class="col-sm-12">
 						<button type="submit" name="submit" id="submit" class="btn-primary"><i class="fa fa-send-o fa-fw"></i>Create Account</button>
@@ -93,7 +107,8 @@
 		<footer>
 			<p>Mbuvi <i class="fa fa-copyright fa-fw"></i> 2018. All Rights Reserved.</p>
 		</footer>
-    </div>
+	</div>
+	<script src="js/auth.js"></script>
 </body>
 
 </html>
