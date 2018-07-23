@@ -4,7 +4,7 @@ function login(e){
     e.preventDefault();
     let email = document.getElementById('usr-email').value;
     let password = document.getElementById('usr-password').value;
-    var statusCode;
+    var status_code;
 
     fetch('https://ridemyway-carpool.herokuapp.com/api/v1/auth/login', {
         method: 'POST',
@@ -23,7 +23,6 @@ function login(e){
     .then((data) =>{
         if(status_code >= 400){
             document.getElementById('error').innerHTML = data['message'];
-            console.log(data);
         }
         else{
             // stores tokens to browser session
