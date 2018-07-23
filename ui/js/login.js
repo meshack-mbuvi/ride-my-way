@@ -26,7 +26,7 @@ function login(e){
             console.log(data);
         }
         else{
-            // stores tokens to the machines local storage
+            // stores tokens to browser session
             window.sessionStorage.authorization = "Bearer " + data.token;
 
             // navigate user depending on user_type
