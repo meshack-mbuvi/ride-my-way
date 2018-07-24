@@ -3,6 +3,7 @@
 <head>
 	<!--Make width of page follow the screen-width of the device-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
 	
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -38,21 +39,29 @@
 
 		<!--Login form here-->
 		<div class="row ">
-			<div class="col-sm-12 col-md-4">
+			<div class="col-sm-12 col-md-3">
 				
 			</div>
-			<div class="col-sm-12 col-md-4 text-center div-center div-with-border">
+			<div class="col-sm-12 col-md-6 text-center div-center div-with-border">
 			    <!--user sign-in form-->
 
-			    <form action="user.html" method="GET">
-                
-	            	<div class="col-sm-12 ">
-	            		<label for="email"><i class="fa fa-envelope fa-fw"></i>Email or Username:</label>
-	                	<input type="text" placeholder="Email or username" name="email" required>
-	                </div>
-	                <div class="col-sm-12">
+			    <form action="user.html" id="frm_sign_in" method="GET">
+					 <!--Display error  -->
+					 <div class="col-sm-12 error"><p id="error"></p></div>
+					<!--Email address  -->
+	            	<div class="col-sm-12 col-md-4">
+						<label for="email"><i class="fa fa-envelope fa-fw"></i>Email:</label>
+					</div>
+					<div class="col-sm-12 col-md-8">
+	                	<input type="email" placeholder="Email" name="email" id="usr-email" required>
+					</div>
+					<!-- end of email address -->
+					<!-- password -->
+	                <div class="col-sm-12 col-md-4">
 						<label for="pwd"><i class="fa fa-lock fa-fw"></i>Enter password :</label>
-					    <input type="password" name="password" placeholder="Enter password" required>
+					</div>
+					<div class="col-sm-12 col-md-8">
+					    <input type="password" name="password" placeholder="Enter password" id="usr-password" required>
 					</div>
 						<p><a href="./recover-password.html">Forgot your password?</a></p>
 					<div class="col-sm-12">
@@ -65,7 +74,7 @@
             	</form>
 			</div>
 
-			<div class="col-sm-12 col-md-4">
+			<div class="col-sm-12 col-md-3">
 				
 			</div>
 		</div>
@@ -74,7 +83,8 @@
 		<footer>
 			<p>Mbuvi <i class="fa fa-copyright fa-fw"></i> 2018. All Rights Reserved.</p>
 		</footer>
-    </div>
+	</div>
+	<script src="js/login.js"></script>
 </body>
 
 </html>

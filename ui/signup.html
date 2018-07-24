@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<!--Make width of page follow the screen-width of the device-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="UTF-8"> 
-	
+	<meta charset="UTF-8">
+
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -14,101 +15,128 @@
 	<!--JS files -->
 	<script type="text/javascript" src="js/main.js"></script>
 </head>
+
 <body>
 	<div class="container">
 		<div class="row navbar" id=myNav>
 			<div class="col-sm-12 col-lg-12">
 				<ul>
-				    <li><a href="./index.html"><i class="fa fa-home "></i>Home</a></li>
-				    <li class="right"><a href="./index.html"><i class="fa fa-sign-up fa-fw"></i>Sign in</a></li>
-				    <li class="icon"><a href="javascript:void(0);" onclick="toggleResponsive()"><i class="fa fa-bars"></i></a></li>
-				</ul> 
+					<li>
+						<a href="./index.html">
+							<i class="fa fa-home "></i>Home</a>
+					</li>
+					<li class="right">
+						<a href="./index.html">
+							<i class="fa fa-sign-up fa-fw"></i>Sign in</a>
+					</li>
+					<li class="icon">
+						<a href="javascript:void(0);" onclick="toggleResponsive()">
+							<i class="fa fa-bars"></i>
+						</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 
-		
+
 		<div class="row ">
 			<div class="col-sm-12 col-md-3">
-				
+
 			</div>
 
 			<!--signup form to create an account-->
 			<div class="col-sm-12 col-md-6 text-center div-center div-with-border">
-			    <!--user sign-in form-->
+				<!--user sign-un form-->
 
-			    <form action="index.html" method="GET">
-					<!-- email -->
+				<form action="" method="POST" id="frm_signup">
+				     <!--Display error  -->
+					<div class="col-sm-12 error"><p id="error"></p></div>
+					 <!-- email -->
 					<div class="col-sm-6 col-md-4">
-						<label for="email"><i class="fa fa-envelope fa-fw"></i>Email :</label>
+						<label for="email">
+							<i class="fa fa-envelope fa-fw"></i>Email :</label>
 					</div>
 					<div class="col-sm-6 col-md-8">
-						<input type="email" placeholder="Email Address" name="email" required>
+						<input type="email" placeholder="Email Address" name="email" id="email" required>
 					</div>
 					<!-- firstname -->
 					<div class="col-sm-6 col-md-4">
-						<label for="fstName"><i class="fa fa-user fa-fw"></i>First Name:</label>
+						<label for="fstName">
+							<i class="fa fa-user fa-fw"></i>First Name:</label>
 					</div>
 					<div class="col-sm-6 col-md-8">
-						<input type="text" placeholder="First Name" name="fstName" required>
+						<input type="text" placeholder="First Name" name="fstName" id="firstname" required>
 					</div>
 					<!-- secondname -->
 					<div class="col-sm-6 col-md-4">
-							<label for="secondname"><i class="fa fa-user fa-fw"></i>Second Name:</label>
-						</div>
-						<div class="col-sm-6 col-md-8">
-							<input type="text" placeholder="Second Name" name="secondname" required>
-						</div>
+						<label for="secondname">
+							<i class="fa fa-user fa-fw"></i>Second Name:</label>
+					</div>
+					<div class="col-sm-6 col-md-8">
+						<input type="text" placeholder="Second Name" name="secondname" id="secondname" required>
+					</div>
 					<!-- phone -->
-	                <div class="col-sm-12 col-md-4">
-	            		<label for="phone"><i class="fa fa-phone fa-fw"></i>Phone Number:</label>
+					<div class="col-sm-12 col-md-4">
+						<label for="phone">
+							<i class="fa fa-phone fa-fw"></i>Phone Number:</label>
 					</div>
 					<div class="col-sm-12 col-md-8">
-						<input type="tel" placeholder="Phone number" name="phone" required>
+						<input type="tel" placeholder="Phone number" name="phone" id="phone" required>
 					</div>
 
 					<!-- password -->
-	                <div class="col-sm-12 col-md-4">
-						<label for="pwd"><i class="fa fa-lock fa-fw"></i>Enter password :</label>
+					<div class="col-sm-12 col-md-4">
+						<label for="pwd">
+							<i class="fa fa-lock fa-fw"></i>Enter password :</label>
 					</div>
 					<div class="col-sm-12 col-md-8">
-						<input type="password" name="pwd" placeholder="Enter password" required>
+						<input type="password" name="pwd" placeholder="Enter password" id="password" required>
 					</div>
 
 					<!-- confirm password -->
 					<div class="col-sm-12 col-md-4">
-						<label for="rpt-pwd"><i class="fa fa-lock fa-fw"></i>Confirm password :</label>
+						<label for="rpt-pwd">
+							<i class="fa fa-lock fa-fw"></i>Confirm password :</label>
 					</div>
 					<div class="col-sm-12 col-md-8">
-						<input type="password" name="rpt-pwd" placeholder="Confirm password" required>
+						<input type="password" name="rpt-pwd" placeholder="Confirm password" id="conf_password" required>
 					</div>
 
 					<div class="col-sm-12 col-md-12">
-						<label for="pwd">Are you a driver? <input type="checkbox" name="chk_driver" id="chk_driver" onclick="showHideLicense()"></label>
-					    
+						<label for="driver_chkbox">Are you a driver?
+							<input type="checkbox" name="driver_chkbox" id="driver_chkbox">
+						</label>
+
 					</div>
 					<div class="col-sm-12">
-						<button type="submit" name="submit" id="submit" class="btn-primary"><i class="fa fa-send-o fa-fw"></i>Create Account</button>
-					</div>	
+						<button type="submit" name="submit" id="btn_signup" class="btn-primary">
+							<i class="fa fa-send-o fa-fw"></i>Create Account</button>
+					</div>
 					<div class="col-sm-12">
-						<h3>Already got an account with us? <br>Log in <a href="./index.html"><i class="fa fa-user fa-fw"></i>here</a></h3>
-					</div>				               
-                
-            	</form>
-            	<!--End of sign-up form -->
+						<h3>Already got an account with us?
+							<br>Log in
+							<a href="./index.html">
+								<i class="fa fa-user fa-fw"></i>here</a>
+						</h3>
+					</div>
+
+				</form>
+				<!--End of sign-up form -->
 			</div>
 
 			<div class="col-sm-12 col-md-4">
-				
+
 			</div>
 		</div>
 		<div class="clear"></div>
 
 		<!--footer -->
 		<footer>
-			<p>Mbuvi <i class="fa fa-copyright fa-fw"></i> 2018. All Rights Reserved.</p>
+			<p>Mbuvi
+				<i class="fa fa-copyright fa-fw"></i> 2018. All Rights Reserved.</p>
 		</footer>
 	</div>
-	<script src="js/auth.js"></script>
+	<script src="js/signup.js"></script>
 </body>
 
 </html>

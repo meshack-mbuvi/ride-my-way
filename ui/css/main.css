@@ -213,6 +213,10 @@ a {
     margin-top: 2px;
     padding:5px;
 }
+.border-bottom{
+    border-bottom: 1px solid #32936f;
+    border-radius: 5px;
+}
 .header{
     color: #32936f;
 }
@@ -358,4 +362,10 @@ td a.danger{
 i.fa-plus{
     font-size: 3em;
     text-align: center;
+}
+/* error message */
+.error p{
+    color: red;
+    font-size: 1.5em;
+    font-weight: bold;
 }
