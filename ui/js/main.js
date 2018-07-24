@@ -9,22 +9,6 @@ function toggleResponsive(){
 	}
 
 }
-// show license field when driver checkbox is checked,hide license field otherwise
-function showHideLicense(){
-	var elem = document.getElementById("driver_license");
-	var elem1 = document.getElementById("chk_driver").checked;
-	var licenseInput = document.getElementById("dr-license");
-	var car_reg_number = document.getElementById("car_reg");
-	if (elem1) {
-		elem.className = "row show";
-		licenseInput.required = true;
-		car_reg_number.required = true;
-	}else {
-		elem.className = "row hide";
-		licenseInput.required = false;
-		car_reg_number.required = false;
-	}
-}
 
 //Join ride here
 function joinRide(){
