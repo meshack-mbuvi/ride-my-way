@@ -34,7 +34,6 @@ function retrieveRides(){
 		}
 		})
 	.then((data) =>{
-		console.log(data)
 		if (data.length == 0){
 			document.getElementById('info').innerHTML = "No ride offer at the moment." +  
 			"Please check again later."
