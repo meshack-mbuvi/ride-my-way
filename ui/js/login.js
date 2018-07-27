@@ -26,7 +26,8 @@ function login(e){
         }
         else{
             // stores tokens to browser session
-            window.sessionStorage.authorization = "Bearer " + data.token;
+            window.localStorage.setItem('token', data.token)
+            window.localStorage.setItem('firstname', data.firstname)
 
             // navigate user depending on user_type
             if(data.user_type === "passenger")
