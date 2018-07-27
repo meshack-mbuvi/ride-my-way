@@ -186,9 +186,6 @@ footer{
     font-size: 1.1em;
 
 }
-.btn-primary{
-    background-color: #32936f;
-}
 #submit{
     display: inline-block;
     width:auto;
@@ -201,7 +198,7 @@ a:hover, a.active{
     background-color:#fff;
     color: #32936f !important;
 }
-h1 a,h3 a{
+.btn-primary,h1 a,h3 a{
     background-color:#32936f;
 }
 a {
@@ -314,13 +311,6 @@ th, td {
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
-/*style for button to join offers*/
-.join{
-    color: #53ff45;
-    background-color:transparent;
-    font-weight:bold;
-    font-size: 1.4em;
-}
 tr:hover{
     background-color: #ade25d;
     color: #157f1f !important;
@@ -368,4 +358,9 @@ i.fa-plus{
     color: red;
     font-size: 1.5em;
     font-weight: bold;
+}
+
+.center{
+    width: 50%;
+    margin-left: 25%;
 }
