@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="UTF-8"> 
 	
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="../css/main.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<!--Link for custom styles-->
@@ -19,10 +19,17 @@
 		<div class="row navbar" id=myNav>
 			<div class="col-sm-12">
 				<ul>
-				    <li><a href="./driver.html"><i class="fa fa-home "></i>Home</a></li>
-				    <li><a href="./myoffers.html"><i class="fa fa-car "></i>Ride offers</a></li>
-				    <li class="right"><a href="./profile.html"><i class="fa fa-user fa-fw"></i>Meshack</a></li>
+				    <li><a href="./rides.html"><i class="fa fa-home "></i>Home</a></li>
+				    <li><a href="./myoffers.html"><i class="fa fa-car "></i>My offers</a></li>
+				    <li><a href="./requests.html"></i>Use requests</a></li>
+				    <li><a href="./new_ride.html"><i class="fa fa-car "></i>offer new ride</a></li>
+				    <li class="right"><ul>
+				    	<li><a href="./index.html">Logout</a></li>
+				    	<li><a href="./profile.html" ><span id="profile">Profile</span></a></li>
+				    	
+				    </ul></li>				    
 				    <li class="icon"><a href="javascript:void(0);" onclick="toggleResponsive()"><i class="fa fa-bars"></i></a></li>
+				    
 				</ul> 
 			</div>
 		</div>
@@ -37,7 +44,7 @@
 			<div class="col-sm-12 col-md-4 text-center div-center div-with-border">
 			    <!--user sign-in form-->
 
-			    <form action="driver.html" method="GET" id="new_offer">
+			    <form action="driver.html" method="POST" id="new_offer">
                 
 	                <div class="col-sm-12 ">
 	            		<label>Start point :</label>
@@ -76,6 +83,8 @@
 		<footer>
 			<p>Mbuvi <i class="fa fa-copyright fa-fw"></i> 2018. All Rights Reserved.</p>
 		</footer>
+
+		<script src="../js/new_ride.js"></script>
     
 </body>
 </html>
