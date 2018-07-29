@@ -35,7 +35,7 @@ function signup(e){
         return result.json();
     })
     .then((data) => {
-        if (status_code => 400){
+        if (status_code >= 400){
             document.getElementById('error').innerHTML = data['message'];
         }
         else{

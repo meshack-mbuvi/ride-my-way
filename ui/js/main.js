@@ -25,7 +25,6 @@ function retrieveRides(){
 
 	})
 	.then((result) => {
-		console.log(result)
 		if (result.status === 200){
 			return result.json()
 		}		

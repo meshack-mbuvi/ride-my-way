@@ -11,121 +11,32 @@
 	<title>Ride offers</title>
 	<script type="text/javascript" src="../js/main.js"></script>
 </head>
-<body>
+<body onload="retrieveRides()">
 	<div class="container">
 		<div class="row navbar" id=myNav>
 			<div class="col-sm-12 col-md-12">
 				<ul>
-				    <li><a href="./user.html"><i class="fa fa-home "></i>|</a></li>
-				    <li><a href="./rides.html"><i class="fa fa-car "></i>Ride offers</a></li>
-				    <li><a href="./myrequests.html">My requests</a></li>
-				    <li><a href="./myrides.html"></i>My rides</a></li>
+				    <li><a href="./rides.html"><i class="fa fa-home "></i>|</a></li>
+				    <li><a href="./myoffers.html"><i class="fa fa-car "></i>My offers</a></li>
+				    <li><a href="./requests.html"></i>Use requests</a></li>
+				    <li><a href="./new_ride.html"><i class="fa fa-car "></i>offer new ride</a></li>
 				    <li class="right"><ul>
 				    	<li><a href="./index.html">Logout</a></li>
-				    	<li><a href="./profile.html">Profile</a></li>
+				    	<li><a href="./profile.html" ><span id="profile">Profile</span></a></li>
 				    	
-				    </ul></li>
-				    <li class="icon"><a href="javascript:void(0);" onclick="toggleResponsive()"><i class="fa fa-bars"></i></a></li>
-				    
+				    </ul></li>				    
+					<li class="icon"><a href="javascript:void(0);" onclick="toggleResponsive()"><i class="fa fa-bars"></i></a></li>
+					
 				</ul>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-sm-3"></div>
-			<div class="header"><h1>Scroll down to view more rides.</h1></div>
+			<div class="col-sm-2 col-md-2"></div>
+			<div class="header"><h1 id="info"></h1></div>
 		</div>
 		<!--ride offers-->
-		<div class="row">
-			<div class="col-sm-12 col-md-3">
-				<div class="details">
-					<p><span class="label">Start point : </span><span> Makongeni, corner two</span></p>
-					<p><span class="label">Destination : </span><span> Ngara Market</span></p>
-					<p><span class="label">Route : </span><span> Thika superhighway</span></p>					
-					<p><span class="label">Departure : </span><span>19 June, 7.00 a.m </span></p>
-					<a href="./ridedetails.html" class="text-center">view more details</a>
-												
-				</div>				
-			</div>
-
-			<div class="col-sm-12 col-md-3">
-				<div class="details">
-					<p><span class="label">Start point : </span><span> Kibera, Ngummo</span></p>
-					<p><span class="label">Destination : </span><span> Ngara Market</span></p>
-					<p><span class="label">Route : </span><span> Valley Road</span></p>					
-					<p><span class="label">Departure : </span><span>19 June, 7.00 a.m </span></p>
-					<a href="./ridedetails.html" class="text-center">view more details</a>
-												
-				</div>				
-			</div>
-
-			<div class="col-sm-12 col-md-3">
-				<div class="details">
-					<p><span class="label">Start point : </span><span>Buruburu,face 4</span></p>
-					<p><span class="label">Destination : </span><span> OTC</span></p>
-					<p><span class="label">Route : </span><span> Juja Rd</span></p>					
-					<p><span class="label">Departure : </span><span>19 June, 7.00 a.m </span></p>
-					<a href="./ridedetails.html" class="text-center">view more details</a>
-												
-				</div>				
-			</div>
-
-			<div class="col-sm-12 col-md-3">
-				<div class="details">
-					<p><span class="label">Start point : </span><span> Makongeni, corner two</span></p>
-					<p><span class="label">Destination : </span><span> Ngara Market</span></p>
-					<p><span class="label">Route : </span><span> Thika superhighway</span></p>					
-					<p><span class="label">Departure : </span><span>19 June, 7.00 a.m </span></p>
-					<a href="./ridedetails.html" class="text-center">view more details</a>
-												
-				</div>				
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-sm-12 col-md-3">
-				<div class="details">
-					<p><span class="label">Start point : </span><span> Makongeni, corner two</span></p>
-					<p><span class="label">Destination : </span><span> Ngara Market</span></p>
-					<p><span class="label">Route : </span><span> Thika superhighway</span></p>					
-					<p><span class="label">Departure : </span><span>19 June, 7.00 a.m </span></p>
-					<a href="./ridedetails.html" class="text-center">view more details</a>
-												
-				</div>				
-			</div>
-
-			<div class="col-sm-12 col-md-3">
-				<div class="details">
-					<p><span class="label">Start point : </span><span> Makongeni, corner two</span></p>
-					<p><span class="label">Destination : </span><span> Ngara Market</span></p>
-					<p><span class="label">Route : </span><span> Thika superhighway</span></p>					
-					<p><span class="label">Departure : </span><span>19 June, 7.00 a.m </span></p>
-					<a href="./ridedetails.html" class="text-center">view more details</a>
-												
-				</div>				
-			</div>
-
-			<div class="col-sm-12 col-md-3">
-				<div class="details">
-					<p><span class="label">Start point : </span><span> Makongeni, corner two</span></p>
-					<p><span class="label">Destination : </span><span> Ngara Market</span></p>
-					<p><span class="label">Route : </span><span> Thika superhighway</span></p>					
-					<p><span class="label">Departure : </span><span>19 June, 7.00 a.m </span></p>
-					<a href="./ridedetails.html" class="text-center">view more details</a>
-												
-				</div>				
-			</div>
-
-			<div class="col-sm-12 col-md-3">
-				<div class="details">
-					<p><span class="label">Start point : </span><span> Makongeni, corner two</span></p>
-					<p><span class="label">Destination : </span><span> Ngara Market</span></p>
-					<p><span class="label">Route : </span><span> Thika superhighway</span></p>					
-					<p><span class="label">Departure : </span><span>19 June, 7.00 a.m </span></p>
-					<a href="./ridedetails.html" class="text-center">view more details</a>
-												
-				</div>				
-			</div>
+		<div class="row" id="rides">			
 		</div>
 	</div>
 
