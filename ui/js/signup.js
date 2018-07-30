@@ -9,7 +9,8 @@ function signup(e){
     let phone = document.getElementById('phone').value;
     let password = document.getElementById('password').value;
     let conf_password = document.getElementById('conf_password').value;
-    let driver = document.getElementById('driver_chkbox').value;
+    let driver = document.getElementById('driver_chkbox').checked;
+    console.log(driver)
 
     error = document.getElementById('error');
     var status_code;
