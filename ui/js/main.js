@@ -162,7 +162,6 @@ function myRides(){
 				 "You don't have any active ride offer now."
 
 			}else{
-				console.log(data)
 				let output = `<table><tr>
 				    <th>Ride Id</th>
 					<th>Start point</th>
@@ -173,13 +172,13 @@ function myRides(){
 				</tr>`;
 				data.forEach(ride => {			
 					output += `
-					<tr">
+					<tr>
 					    <td>${ride.id}</td>
 						<td>${ride["start point"]}</td>
 						<td>${ride.destination}</td>
 						<td>${ride.route}</td>					
 						<td>${ride["start_time"]} </td>
-						<td><a href="javascript:void(0)" onclick="viewRequests(${ride.id})">${ride['request count']}</a></td>												
+						<td><a href="./requests.html?ride_id=${ride.id}" onclick="viewRequests(${ride.id})">${ride['request count']}</a></td>												
 					</tr>
 					`;
 				});
@@ -190,6 +189,72 @@ function myRides(){
 	}	
 }
 
-function viewRequests(ride_id){
-	console.log(ride_id)
+function viewRequests(ride_id =""){
+	var urlParams = new URLSearchParams(window.location.search);
+	var ride_id = urlParams.get('ride_id')
+	var url = `https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/${ride_id}/requests`,ride_id
+	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
+		redirect : window.location.replace('../index.html')
+	}
+	else{
+		var statusCode;
+		fetch(url,{
+			method: 'GET',
+			headers:({
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer '+window.localStorage.getItem('token')
+			})
+		})
+		.then((result) => {
+			statusCode = result.status
+			return result.json()
+		})
+		.then((data) => {
+			if(statusCode === 404){
+				document.getElementById('info').innerHTML = data.message;
+			}
+			else if(statusCode === 401){
+				redirect : window.location.replace('../index.html')
+			}
+			else{
+				console.log(data)
+				let output = '';
+				output = `<table>
+				<tr>
+				    <th>#ID</th>
+					<th>User</th>
+					<th>Contact</th>
+					<th>pick up point</th>
+					<th>Drop off point</th>
+					<th>Seats booked</th>
+					<th>Status</th>
+					<th>Accept/Reject</th>
+				</tr>`;
+				data.forEach(request => {
+					output += `
+					<tr>
+					    <td>${request['Request Id']}</td>
+						<td>${request['name of user']}</td>
+						<td>${request['user phone contact']}</td>
+						<td>${request['pick up point']}</td>
+						<td>${request['drop-off point']}</td>
+						<td>${request['seats booked']}</td>
+						<td>${request['status']}</td>
+						<td>`
+						if(request['status'] == 'accepted'){
+							output += `<i class="fa fa-user-plus"></i>
+							<a href="./requests.html" class="danger"><i class="fa fa-user-times"></i></a>
+							</td></tr>`
+							
+						}else{
+							output += `<a href="./requests.html"><i class="fa fa-user-plus"></i></a>
+							<a href="./requests.html" class="danger"><i class="fa fa-user-times"></i></a>
+							</td></tr>`							
+						}
+				});
+				output += `</table>`
+				document.getElementById('requests').innerHTML = output;
+			}
+		})
+	}
 }
