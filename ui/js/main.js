@@ -178,7 +178,8 @@ function myRides(){
 						<td>${ride.destination}</td>
 						<td>${ride.route}</td>					
 						<td>${ride["start_time"]} </td>
-						<td><a href="./requests.html?ride_id=${ride.id}" onclick="viewRequests(${ride.id})">${ride['request count']}</a></td>												
+						<td><a href="./requests.html?ride_id=${ride.id}" \
+						   onclick="viewRequests(${ride.id})">${ride['request count']}</a></td>												
 					</tr>
 					`;
 				});
@@ -192,7 +193,8 @@ function myRides(){
 function viewRequests(ride_id =""){
 	var urlParams = new URLSearchParams(window.location.search);
 	var ride_id = urlParams.get('ride_id')
-	var url = `https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/${ride_id}/requests`,ride_id
+	document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
+	var url = `https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/${ride_id}/requests`
 	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
 		redirect : window.location.replace('../index.html')
 	}
@@ -211,13 +213,12 @@ function viewRequests(ride_id =""){
 		})
 		.then((data) => {
 			if(statusCode === 404){
-				document.getElementById('info').innerHTML = data.message;
+				document.getElementById('info').innerHTML = 'There is no request to your ride offer.';
 			}
 			else if(statusCode === 401){
 				redirect : window.location.replace('../index.html')
 			}
 			else{
-				console.log(data)
 				let output = '';
 				output = `<table>
 				<tr>
@@ -243,12 +244,17 @@ function viewRequests(ride_id =""){
 						<td>`
 						if(request['status'] == 'accepted'){
 							output += `<i class="fa fa-user-plus"></i>
-							<a href="./requests.html" class="danger"><i class="fa fa-user-times"></i></a>
+							<a href="javascript:void(0);" class="danger" onclick="actOnRequest(${request['Request Id']},'reject')"><i class="fa fa-user-times"></i></a>
 							</td></tr>`
 							
-						}else{
-							output += `<a href="./requests.html"><i class="fa fa-user-plus"></i></a>
-							<a href="./requests.html" class="danger"><i class="fa fa-user-times"></i></a>
+						}else if(request['status'] == 'rejected'){
+							output += `<a href="javascript:void(0);" onclick="actOnRequest(${request['Request Id']},'accept')"><i class="fa fa-user-plus"></i></a>
+							<i class="fa fa-user-times"></i>
+							</td></tr>`
+						}						
+						else{
+							output += `<a href="javascript:void(0);" onclick="actOnRequest(${request['Request Id']},'accept')"><i class="fa fa-user-plus"></i></a>
+							<a href="javascript:void(0);" class="danger" onclick="actOnRequest(${request['Request Id']},'reject')"><i class="fa fa-user-times"></i></a>
 							</td></tr>`							
 						}
 				});
@@ -256,5 +262,33 @@ function viewRequests(ride_id =""){
 				document.getElementById('requests').innerHTML = output;
 			}
 		})
+	}
+}
+
+function actOnRequest(requestId,action){
+	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
+		redirect : window.location.replace('../index.html')
+	}
+	else{
+		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
+		var url = `https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/requests/${requestId}?action=${action}`
+		var statusCode
+		console.log(url)
+		fetch(url,{
+			method: 'PUT',
+			headers: ({
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+			})
+		})
+		.then((result) => {
+			statusCode = result.status
+			return result.json()
+		})
+		.then((data) => {
+			alert(data.message)
+			window.location.reload()
+		})
+	
 	}
 }
