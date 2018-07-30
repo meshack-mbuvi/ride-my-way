@@ -169,6 +169,7 @@ function myRides(){
 					<th>Route</th>
 					<th>Start Time</th>
 					<th>Request count</th>
+					<th>Action</th>
 				</tr>`;
 				data.forEach(ride => {			
 					output += `
@@ -179,7 +180,8 @@ function myRides(){
 						<td>${ride.route}</td>					
 						<td>${ride["start_time"]} </td>
 						<td><a href="./requests.html?ride_id=${ride.id}" \
-						   onclick="viewRequests(${ride.id})">${ride['request count']}</a></td>												
+						   onclick="viewRequests(${ride.id})">${ride['request count']}</a></td>
+						<td><a href="javascript:void(0);" onclick="editRide(${ride.id})"><i class="fa fa-edit"></i></a>
 					</tr>
 					`;
 				});
@@ -290,5 +292,58 @@ function actOnRequest(requestId,action){
 			window.location.reload()
 		})
 	
+	}
+}
+
+function editRide(ride_id){
+	// open modal to join ride offer
+	var modal = document.getElementById('editRideModal')
+	var span = document.getElementsByClassName("close")[0];
+	// show modal dialog
+	modal.style.display = "block";
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+	document.getElementById('frm_edit_offer').addEventListener('submit', editOffer);
+	function editOffer(e){
+		e.preventDefault()
+		let startPoint = document.getElementById('start').value;
+		let destination = document.getElementById('destination').value;
+		let route = document.getElementById('route').value;
+		let startTime = document.getElementById('time').value;
+		let availableSeats = document.getElementById('avail_space').value;
+
+		var statusCode;
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/'+parseInt(ride_id),{
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+			},
+			body: JSON.stringify({
+				'start point':startPoint,
+                destination:destination,
+                route: route,
+                'start time': startTime,
+                'available space': parseInt(availableSeats)
+			})
+
+		})
+		.then((result) => {
+			statusCode = result.status
+			return result.json()
+		})
+		.then((data) =>{
+			window.alert("Ride offer updated")
+			modal.style.display = "none";
+			window.location.reload()
+		})
+		
 	}
 }
