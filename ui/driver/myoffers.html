@@ -39,7 +39,51 @@
 			</div>
 			<div class="col-sm-12 col-md-1"></div>
 			
-		</div>	
+		</div>
+		
+		<!-- Join ride modal -->
+	<div id="editRideModal" class="modal">
+
+		<div class="modal-header div-center"><p class="text-center">Fill the form below</p></div>
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			
+			<div class="col-sm-12 text-center div-center div-with-border">
+				<form action="driver.html" method="POST" id="frm_edit_offer">
+                
+	                <div class="col-sm-12 ">
+	            		<label>Start point :</label>
+	                	<input type="text" name="start" id="start" required>
+					</div>
+					<div class="col-sm-12"><label for="destination">Destination : </label>
+						<input type="text" name="destination" id="destination" required>
+	                </div>
+					<div class="col-sm-12">
+						<label for="route">Ride Route :</label>
+					    <input type="text" id="route" placeholder="route" required>
+					</div>
+					<div class="col-sm-12">
+						<label for="time">Start Time</label>
+					    <input type="time" id="time" placeholder="Time" required>
+					</div>
+					<div class="col-sm-12">
+						<label for="avail_space">Available space :</label>
+					    <input type="number" id="avail_space" name="avail_space" placeholder="Available space" required>
+					</div>
+					<div class="col-sm-12">
+
+						<button type="submit" name="submit" id="submit" class="btn-primary"><i class="fa fa-send-o fa-fw"></i>Save details</button>
+					</div>					               
+                
+            	</form>
+			</div>
+			
+		</div>
+		<span class="close">&times;</span>
+	
+	</div>
+
 
 		
 	</div>
