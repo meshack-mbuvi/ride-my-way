@@ -131,3 +131,65 @@ function logout(){
 		})
 	}
 }
+
+function myRides(){
+	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
+		redirect : window.location.replace('../index.html')
+	}
+	else{
+		var statusCode;
+		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides',{		
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+			}
+
+		})
+		.then((result) => {
+			statusCode = result.status
+			if (result.status === 200){
+				return result.json()
+			}		
+			else if (result.status === 401){
+				redirect : window.location.replace('../index.html')
+			}
+			})
+		.then((data) =>{
+			if (statusCode == 404){
+				document.getElementById('info').innerHTML =
+				 "You don't have any active ride offer now."
+
+			}else{
+				console.log(data)
+				let output = `<table><tr>
+				    <th>Ride Id</th>
+					<th>Start point</th>
+					<th>Destination</th>
+					<th>Route</th>
+					<th>Start Time</th>
+					<th>Request count</th>
+				</tr>`;
+				data.forEach(ride => {			
+					output += `
+					<tr">
+					    <td>${ride.id}</td>
+						<td>${ride["start point"]}</td>
+						<td>${ride.destination}</td>
+						<td>${ride.route}</td>					
+						<td>${ride["start_time"]} </td>
+						<td><a href="javascript:void(0)" onclick="viewRequests(${ride.id})">${ride['request count']}</a></td>												
+					</tr>
+					`;
+				});
+				output += '</table>';
+				document.getElementById('myoffers').innerHTML = output;
+			}
+		})
+	}	
+}
+
+function viewRequests(ride_id){
+	console.log(ride_id)
+}
