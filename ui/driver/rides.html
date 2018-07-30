@@ -40,6 +40,44 @@
 		</div>
 	</div>
 
+	<!-- Join ride modal -->
+	<div id="joinRideModal" class="modal">
+
+		<div class="modal-header div-center"><p class="text-center">Fill the form below</p></div>
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			
+			<div class="col-sm-12 text-center div-center div-with-border">
+				<!--user sign-in form-->
+
+				<form action="" method="POST" id="joinOffer">
+				
+					<div class="col-sm-12 ">
+						<label>Pick up point :</label>
+						<input type="text" name="start" id="pickUpPoint" required>
+					</div>
+					<div class="col-sm-12"><label for="destination">Destination : </label>
+						<input type="text" name="destination" id="destination" required>
+					</div>
+					<div class="col-sm-12">
+						<label for="time">Number of seats:</label>
+						<input type="number" id="seatsBooked" placeholder="Number of seats to book" required>
+					</div>
+					<div class="col-sm-12">
+
+						<button type="submit" name="submit" id="submit" class="btn-primary"><i class="fa fa-send-o fa-fw"></i>Save details</button>
+					</div>					               
+				
+				</form>
+				<!--End of sign-up form -->
+			</div>
+			
+		</div>
+		<span class="close">&times;</span>
+	
+	</div>
+
 			
 	<!--provide extra space betwen container and footer-->
 	<div class="clear"></div>

@@ -62,7 +62,51 @@ function retrieveRides(){
 }
 
 function joinRide(ride_id){
-	console.log(ride_id);
+	// open modal to join ride offer
+	var modal = document.getElementById('joinRideModal')
+	var span = document.getElementsByClassName("close")[0];
+	// show modal dialog
+	modal.style.display = "block";
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+	document.getElementById('joinOffer').addEventListener('submit', joinOffer);
+	function joinOffer(e){
+		e.preventDefault()
+		let pickUpPoint = document.getElementById('pickUpPoint').value;
+		let destination = document.getElementById('destination').value;
+		let seats = document.getElementById('seatsBooked').value;
+
+		var statusCode;
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/rides/'+parseInt(ride_id) +'/requests',{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+			},
+			body: JSON.stringify({
+				"pick-up point": pickUpPoint,
+				"drop-off point": destination,
+				"seats_booked": parseInt(seats)
+			})
+
+		})
+		.then((result) => {
+			statusCode = result.status
+			return result.json()
+		})
+		.then((data) =>{
+			window.alert(data.message)
+			modal.style.display = "none";
+		})
+		
+	}
 }
 
 function logout(){
