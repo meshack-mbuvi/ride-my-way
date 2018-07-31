@@ -153,6 +153,8 @@ function myRides(){
 				return result.json()
 			}		
 			else if (result.status === 401){
+				result = confirm("You are not logged in or your access token expired.\
+				\nPress OK to go to login.")
 				redirect : window.location.replace('../index.html')
 			}
 			})
@@ -181,7 +183,12 @@ function myRides(){
 						<td>${ride["start_time"]} </td>
 						<td><a href="./requests.html?ride_id=${ride.id}" \
 						   onclick="viewRequests(${ride.id})">${ride['request count']}</a></td>
-						<td><a href="javascript:void(0);" onclick="editRide(${ride.id})"><i class="fa fa-edit"></i></a>
+						<td><a href="javascript:void(0);" onclick="editRide(${ride.id})">
+							<i class="fa fa-edit"></i></a>
+							<a href="javascript:void(0);" onclick="deleteRide(${ride.id})" class="danger">
+							<i class="fa fa-trash"></i></a>
+
+						</td>
 					</tr>
 					`;
 				});
@@ -345,5 +352,27 @@ function editRide(ride_id){
 			window.location.reload()
 		})
 		
+	}
+}
+
+function deleteRide(ride_id){
+	result = confirm("Are you sure you want to delete this offer?\nRemeber this action is irreversible")
+	if (result){
+		var statusCode;
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/'+parseInt(ride_id),{
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+			}
+		})
+		.then((result) => {
+			statusCode = result.status
+			return result.json()
+		})
+		.then((data) =>{
+			window.alert("Ride offer has been deleted.")
+			window.location.reload()
+		})
 	}
 }
