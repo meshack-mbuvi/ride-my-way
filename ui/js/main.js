@@ -383,7 +383,7 @@ function myRequests(){
 	else{
 		var statusCode;
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-		fetch('http://0.0.0.0:5000/api/v1/users/rides/requests',{		
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/requests',{		
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -393,7 +393,7 @@ function myRequests(){
 		})
 		.then((result) => {
 			statusCode = result.status
-			if (result.status === 200){
+			if (result.status == 200){
 				return result.json()
 			}		
 			else if (result.status === 401){
@@ -403,6 +403,7 @@ function myRequests(){
 			}
 			})
 		.then((data) =>{
+			
 			if (statusCode == 404){
 				document.getElementById('info').innerHTML =
 				 "You don't have any request now."
@@ -441,5 +442,46 @@ function myRequests(){
 }
 
 function manageRequest(requestId, action){
-	console.log(requestId, action)
+	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
+		res = confirm("Your session has expired.\nClick OK to go to login.")
+		if(res){
+			redirect : window.location.replace('../index.html')
+		}
+	}
+	else{
+		if(action ==='del'){
+			var method = 'DELETE'
+		}
+		else{
+			var method = 'PUT'
+		}
+		var url = `https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/requests/${requestId}`
+		fetch(url, {
+			method: method,
+			headers: ({
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+			})
+		})
+		.then((result) => {
+			console.log(result)
+			if(result.status == 401){
+				res = confirm("Your session has expired.\nClick OK to go to login.")
+				if(res){
+					redirect : window.location.replace('../index.html')
+				}
+			}
+			else if(result.status == 200){
+				return result.json()
+			}
+		})
+		.then(data => {
+			alert(data.message)
+			window.location.reload()
+		})
+		.catch(err =>{
+			console.log(err)
+		})
+		
+	}
 }
