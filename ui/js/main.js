@@ -464,7 +464,6 @@ function manageRequest(requestId, action){
 			})
 		})
 		.then((result) => {
-			console.log(result)
 			if(result.status == 401){
 				res = confirm("Your session has expired.\nClick OK to go to login.")
 				if(res){
@@ -483,5 +482,50 @@ function manageRequest(requestId, action){
 			console.log(err)
 		})
 		
+	}
+}
+
+function myProfile(){
+	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
+		redirect : window.location.replace('../index.html')
+	}
+	else{
+		var statusCode;
+		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/auth/profile',{		
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+			}
+
+		})
+		.then(result => {
+			if(result.status == 401){
+				res = confirm("Your session has expired.\nClick OK to go to login.")
+				if(res){
+					redirect : window.location.replace('../index.html')
+				}
+			}
+			else if(result.status == 200){
+				return result.json()
+			}
+		})
+		.then(data =>{
+			var name =  + data.secondname.toUpperCase()
+			let output = `
+			<p><span class="label">Full Names : </span> ${data.firstname.toUpperCase()} 
+					${data.secondname.toUpperCase()}</p>
+					<p><span class="label">Email</span> : ${data.email}</p>
+					<p><span class="label">Type : </span> ${data["user type"]}</p>
+					<p><span class="label">Phone Contact : </span> +254${data["phone number"]}</p>
+					<a href="">Edit</a>
+			`;
+			document.getElementById('userDetails').innerHTML = output
+		})
+		.catch(err => {
+			console.log(err)
+		})
+
 	}
 }

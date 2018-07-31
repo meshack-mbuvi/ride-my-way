@@ -3,46 +3,41 @@
 <head>
 	<!--Make width of page follow the screen-width of the device-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
 	
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="../css/main.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!--Link for custom styles-->
 	<title>User profile</title>
+
+	<script src="../js/main.js"></script>
 </head>
-<body>
+<body onload="myProfile()">
 	<div class="container">
 		<div class="row navbar" id=myNav>
 			<div class="col-sm-12">
 				<ul>
-				    <li><a href="./user.html"><i class="fa fa-home "></i>|</a></li>
-				    <li><a href="./rides.html"><i class="fa fa-car "></i>Ride offers</a></li>
-				    <li><a href="./myrequests.html">My requests</a></li>
+					<li><a href="./rides.html"><i class="fa fa-home "></i>|</a></li>
+					<li><a href="./myrequests.html">My requests</a></li>
 				    <li><a href="./myrides.html"></i>My rides</a></li>
+				    <li><a href="./myoffers.html"><i class="fa fa-car "></i>My offers</a></li>
+				    <li><a href="./new_ride.html"><i class="fa fa-car "></i>offer new ride</a></li>
 				    <li class="right"><ul>
-				    	<li><a href="./index.html">Logout</a></li>
-				    	<li><a href="./profile.html">Profile</a></li>
-				    	
-				    </ul></li>
-				    <li class="icon"><a href="javascript:void(0);" onclick="toggleResponsive()"><i class="fa fa-bars"></i></a></li>
-				    
+				    	<li><a href="javascript:void(0);" onclick="logout()">Logout</a></li>
+				    	<li><a href="./profile.html" ><span id="profile">Profile</span></a></li>				    	
+				    </ul></li>				    
+					<li class="icon"><a href="javascript:void(0);" onclick="toggleResponsive()"><i class="fa fa-bars"></i></a></li>					
 				</ul>
 			</div>
 		</div>
-
-		<!--ride offers-->
+		<!-- user profile -->
 		<div class="row ">
 			<div class="col-sm-12 col-md-2"></div>
 			<div class="col-sm-12 col-md-8">
 				<div class="col-sm-12 col-md-3 user-photo">
-					<img src="img/profile/user.png">
+					<img src="../img/profile/user.png">
 				</div>
-				<div class="about col-sm-12 col-md-9">
-					<p><span class="label">Name : </span>Meshack Mbuvi</p>
-					<p><span class="label">Email</span> : mcjhhjha@andela.com</p>
-					<p><span class="label">Username : </span> Mbuvi</p>
-					<p><span class="label">Type : </span> Passenger</p>
-					<p><span class="label">Rides taken : </span> 30</p>
-					<a href="./editprofile.html">Edit</a>
+				<div class="about col-sm-12 col-md-9" id="userDetails">
 				</div>
 			</div>
 			<div class="col-sm-12 col-md-2"></div>
