@@ -7,7 +7,6 @@ function toggleResponsive(){
 	}else{
 		elem.className = "row navbar";
 	}
-
 }
 // load rides 
 function retrieveRides(){
@@ -375,4 +374,72 @@ function deleteRide(ride_id){
 			window.location.reload()
 		})
 	}
+}
+
+function myRequests(){
+	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
+		redirect : window.location.replace('../index.html')
+	}
+	else{
+		var statusCode;
+		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
+		fetch('http://0.0.0.0:5000/api/v1/users/rides/requests',{		
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+			}
+
+		})
+		.then((result) => {
+			statusCode = result.status
+			if (result.status === 200){
+				return result.json()
+			}		
+			else if (result.status === 401){
+				result = confirm("You are not logged in or your access token expired.\
+				\nPress OK to go to login.")
+				redirect : window.location.replace('../index.html')
+			}
+			})
+		.then((data) =>{
+			if (statusCode == 404){
+				document.getElementById('info').innerHTML =
+				 "You don't have any request now."
+
+			}else{
+				let output = `<table><tr>
+					<th>#Id</th>
+					<th>Data Requested</th>
+					<th>Pick up point</th>
+					<th>Drop-off point</th>
+					<th>Status</th>
+					<th>Action</th>
+				</tr>`;
+				data.forEach(request => {			
+					output += `
+					<tr>
+						<td>${request["Request Id"]}</td>
+						<td>${request['Date Requested']}</td>
+						<td>${request["pick up point"]}</td>
+						<td>${request["drop-off point"]}</td>
+						<td>${request.status} </td>
+						<td><a href="javascript:void(0);" onclick="manageRequest(${request["Request Id"]},'edit')">
+							<i class="fa fa-edit"></i></a>
+							<a href="javascript:void(0);" onclick="manageRequest(${request["Request Id"]},'del')">
+							<i class="fa fa-times"></i></a>
+						</td>
+					</tr>
+					`;
+				});
+				output += '</table>';
+				document.getElementById('myrequests').innerHTML = output;
+			}
+		})
+		.catch(error => console.log(error))
+	}	
+}
+
+function manageRequest(requestId, action){
+	console.log(requestId, action)
 }
