@@ -46,9 +46,7 @@ function newRide(e){
             }
             else {
                 result = alert(data['message'])
-                if(result){
-                    redirect: window.location.replace('./rides.html')
-                }
+                redirect: window.location.replace('./rides.html')
             }
         })
     }
