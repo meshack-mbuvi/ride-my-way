@@ -58,7 +58,7 @@
 }
 /*when screen is less than 600px wide, hide all links except for the first one("Home"). 
 Show link that opens and closes the navbar*/
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
     .navbar li:not(:first-child){
         display: none;
     }
