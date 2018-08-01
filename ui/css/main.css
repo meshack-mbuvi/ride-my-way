@@ -130,7 +130,7 @@ input[type=text], input[type=password], input[type=email], button[type=submit]{
     
 }
 label{
-    width: 50%;
+    width: 40%;
 }
 label, input {
     font-size: 18px;
