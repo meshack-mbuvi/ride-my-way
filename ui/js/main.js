@@ -519,13 +519,51 @@ function myProfile(){
 					<p><span class="label">Email</span> : ${data.email}</p>
 					<p><span class="label">Type : </span> ${data["user type"]}</p>
 					<p><span class="label">Phone Contact : </span> +254${data["phone number"]}</p>
-					<a href="">Edit</a>
 			`;
+			if(data['user type'] === 'passenger'){
+				output += '<h3><a href="javascript:void(0);" onclick="upgrade()">Click to upgrade to be a driver</a></h3>'
+			}
 			document.getElementById('userDetails').innerHTML = output
 		})
 		.catch(err => {
 			console.log(err)
 		})
 
+	}
+}
+
+function upgrade(){
+	res = confirm("Are you sure you want to upgrade your account?")
+	if (res){
+		if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
+			redirect : window.location.replace('../index.html')
+		}
+		else{
+			var statusCode;
+			document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
+			fetch('https://ridemyway-carpool.herokuapp.com/api/v1/auth/upgrade?query=upgrade',{		
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+				}
+	
+			})
+			.then(result => {
+				statusCode = result.status
+				return result.json()
+			})
+			.then(data => {
+				if(statusCode == 401){
+					res = confirm("Request not completed becaues your session has expired.\nClick OK to go to login.")
+					if(res){
+						redirect : window.location.replace('../index.html')
+					}
+				}else if(statusCode == 200){
+					alert("Your account has been upgraded.\nYou can now start offering rides.")
+					redirect : window.location.replace('../driver/profile.html')
+				}
+			})
+		}
 	}
 }
