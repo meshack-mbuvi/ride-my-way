@@ -40,3 +40,53 @@ function login(e){
         }
     })
 }
+
+function resetPassword(){
+	// open modal to join ride offer
+	var modal = document.getElementById('resetPasswordModal')
+	var span = document.getElementsByClassName("close")[0];
+	// show modal dialog
+	modal.style.display = "block";
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+	document.getElementById('frm_reset_password').addEventListener('submit', reset);
+	function reset(e){
+		e.preventDefault()
+		let email = document.getElementById('user_email').value;
+		let password = document.getElementById('user_password').value;
+		let cnf_password = document.getElementById('cnf_user_password').value;
+
+		var statusCode;
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/auth/reset_password',{
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+			},
+			body: JSON.stringify({
+				email: email,
+				password: password,
+				"confirm password": cnf_password
+			})
+
+		})
+		.then((result) => {
+			statusCode = result.status
+			return result.json()
+		})
+		.then((data) =>{
+			window.alert(data.message)
+			if(statusCode == 200){
+				modal.style.display = "none";
+			}			
+		})
+		
+    }
+}
