@@ -18,7 +18,7 @@
 				<ul>
 				    <li><a href="./rides.html"><i class="fa fa-home "></i>|</a></li>
 				    <li><a href="./myrequests.html">My requests</a></li>
-				    <li><a href="./myrides.html"></i>My rides</a></li>
+					<li><a href="./myrides.html"></i>My rides</a></li>
 				    <li class="right"><ul>
 				    	<li><a href="../index.html" onclick="logout()">Logout</a></li>
 				    	<li><a href="./profile.html" ><span id="profile">Profile</span></a></li>
@@ -29,9 +29,22 @@
 				</ul>
 			</div>
 		</div>
+		<div class="row">
+				<div class="col-sm-12 col-md-3"></div>
+			<form id="frm_filter"><span class="label">Search by : </span> 
+				<select id="key">
+					<option value="destination">Destination</option>
+					<option value="start_point">Start Point</option>
+					<option value="route" >Route</option>
+					<option value="ride_id" >Ride ID</option>
+				  </select> <input type="text" placeholder="filter value" 
+				  style="margin-top:10px;" id="key_value">
+				  <button type="submit>" class="search" >Search</button>
+				 </form>
+		</div>
 
 		<div class="row">
-			<div class="col-sm-2 col-md-2"></div>
+			<div class="col-sm-12 col-md-2"></div>
 			<div class="header"><h1 id="info"></h1></div>
 		</div>
 		<!--ride offers-->
@@ -80,7 +93,8 @@
 	<footer>
 		<p>Mbuvi <i class="fa fa-copyright fa-fw"></i> 2018. All Rights Reserved.</p>
 	</footer>
-    
+
+	<script type="text/javascript" src="../js/filter.js"></script>    
 </body>
 
 </html>
