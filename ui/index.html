@@ -63,7 +63,7 @@
 					<div class="col-sm-12 col-md-8">
 					    <input type="password" name="password" placeholder="Enter password" id="usr-password" required>
 					</div>
-						<p><a href="./recover-password.html">Forgot your password?</a></p>
+						<p><a href="javascript:void(0);" onclick="resetPassword()">Forgot your password?</a></p>
 					<div class="col-sm-12">
 						<button type="submit" name="submit" id="submit" class="btn-primary"><i class="fa fa-send-o fa-fw"></i>Login</button>
 					</div>	
@@ -78,6 +78,53 @@
 				
 			</div>
 		</div>
+		<!-- Join ride modal -->
+	<div id="resetPasswordModal" class="modal">
+
+		<div class="modal-header div-center"><p class="text-center">Fill the form below</p></div>
+
+		<!-- Modal content -->
+		<div class="modal-content">			
+			<div class="col-sm-12 text-center div-center div-with-border">
+				<form action="user.html" id="frm_reset_password" method="POST">
+					<div class="col-sm-12 ">
+						<div class="col-sm-12 col-md-3">
+							<label>Email :</label>
+						</div>
+						<div class="col-sm-12 col-md-8">
+							<input type="email" name="email" id="user_email" required>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-12 col-md-3">
+							<label for="password">Password: </label>
+						</div>
+						<div class="col-sm-12 col-md-8">
+							<input type="password" name="password" id="user_password" required>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="col-sm-12 col-md-3">
+							<label for="password">Confirm Password: </label>
+						</div>
+						<div class="col-sm-12 col-md-8">
+							<input type="password" name="password" id="cnf_user_password" required>
+						</div>
+					</div>				
+					<div class="col-sm-12">
+						<button type="submit" name="submit" id="submit" class="btn-primary"><i class="fa fa-send-o fa-fw"></i>Reset password</button>
+					</div>	
+					<div class="col-sm-12 col-md-6" style="width:100%;clear: both;">
+						<h3>Don't have an account? <br>Sign up <a href="./signup.html"><i class="fa fa-user fa-fw"></i>here</a></h3>
+					</div>				               
+			   
+			   </form>
+			</div>
+			
+		</div>
+		<span class="close">&times;</span>
+	
+	</div>
 
 		<!--footer -->
 		<footer>
