@@ -414,3 +414,9 @@ i.fa-plus{
     text-decoration: none;
     cursor: pointer;
 }
+.search{
+    background-color:#32936f;
+    border-radius:3px;
+    border: 1px solid #32936f;
+    height: 1.6em;
+}

@@ -27,10 +27,13 @@ function retrieveRides(){
 			if (result.status === 200){
 				return result.json()
 			}		
-			else if (result.status >= 400){
-				redirect : window.location.replace('../index.html')
+			else if (result.status >= 401){
+				result = confirm('Your authorization ' + data['msg'] + '\nClick Ok to go to login')
+                if(result){
+                    redirect: window.location.replace('../index.html')
+                }
 			}
-			})
+		})
 		.then((data) =>{
 			if (data.length == 0){
 				document.getElementById('info').innerHTML = "No ride offer at the moment." +  
@@ -148,10 +151,10 @@ function myRides(){
 		})
 		.then((result) => {
 			statusCode = result.status
-			if (result.status === 200){
+			if (result.status == 200){
 				return result.json()
 			}		
-			else if (result.status === 401){
+			else if (result.status == 401){
 				result = confirm("You are not logged in or your access token expired.\
 				\nPress OK to go to login.")
 				redirect : window.location.replace('../index.html')
@@ -220,10 +223,12 @@ function viewRequests(ride_id =""){
 			return result.json()
 		})
 		.then((data) => {
-			if(statusCode === 404){
+			if(statusCode == 404){
 				document.getElementById('info').innerHTML = 'There is no request to your ride offer.';
 			}
-			else if(statusCode === 401){
+			else if(statusCode == 401){
+				result = confirm("You are not logged in or your access token expired.\
+				\nPress OK to go to login.")
 				redirect : window.location.replace('../index.html')
 			}
 			else{
@@ -294,6 +299,13 @@ function actOnRequest(requestId,action){
 			return result.json()
 		})
 		.then((data) => {
+			if (statusCode == 401){
+				result = confirm("You are not logged in or your access token expired.\
+				\nPress OK to go to login.")
+				if(result){
+					redirect : window.location.replace('../index.html')
+				}
+			}
 			alert(data.message)
 			window.location.reload()
 		})
@@ -346,9 +358,18 @@ function editRide(ride_id){
 			return result.json()
 		})
 		.then((data) =>{
-			window.alert("Ride offer updated")
-			modal.style.display = "none";
-			window.location.reload()
+			if (statusCode == 401){
+				result = confirm("You are not logged in or your access token expired.\
+				\nPress OK to go to login.")
+				if(result){
+					redirect : window.location.replace('../index.html')
+				}
+			}else{
+				window.alert("Ride offer updated")
+				modal.style.display = "none";
+				window.location.reload()
+			}
+			
 		})
 		
 	}
@@ -567,3 +588,4 @@ function upgrade(){
 		}
 	}
 }
+
