@@ -1,4 +1,3 @@
-
 function toggleResponsive(){
 	// Add responsive class to navbar when user clicks the icon
 	var elem = document.getElementById("myNav")
@@ -10,10 +9,13 @@ function toggleResponsive(){
 }
 // load rides 
 function retrieveRides(){
-	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
-		redirect : window.location.replace('../index.html')
+	var token = window.localStorage.getItem('token')
+	if(window.localStorage.getItem('firstname') === "" || token ==="" || token == undefined){
+		redirectUser()
 	}
 	else{
+		var statusCode;
+		resolveURL();
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
 		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/rides',{		
 			method: 'GET',
@@ -24,18 +26,14 @@ function retrieveRides(){
 
 		})
 		.then((result) => {
-			if (result.status === 200){
-				return result.json()
-			}		
-			else if (result.status >= 401){
-				result = confirm('Your authorization ' + data['msg'] + '\nClick Ok to go to login')
-                if(result){
-                    redirect: window.location.replace('../index.html')
-                }
-			}
+			statusCode = result.status;
+			return result.json()
 		})
 		.then((data) =>{
-			if (data.length == 0){
+			if (statusCode == 401){
+				redirectUser();
+			}
+			else if (data.length == 0){
 				document.getElementById('info').innerHTML = "No ride offer at the moment." +  
 				"Please check again later."
 
@@ -59,6 +57,7 @@ function retrieveRides(){
 				document.getElementById('rides').innerHTML = output;
 			}
 		})
+		.catch(error => alert(error))
 	}
 	
 }
@@ -104,16 +103,36 @@ function joinRide(ride_id){
 			return result.json()
 		})
 		.then((data) =>{
+			if(statusCode == 401){
+				redirectUser()
+			}
 			window.alert(data.message)
 			modal.style.display = "none";
 		})
+		.catch(error => alert(error))
 		
+	}
+}
+
+function redirectUser(){
+	confirm("You are not logged in. Please not that you will be redirected to login page when you close the dialog.")
+	redirect : window.location.replace('../index.html')
+}
+
+function resolveURL(){
+	var pathArray = window.location.pathname.split('/')
+	if(window.localStorage.getItem('user_type') === 'driver' && pathArray[pathArray.length -2] ==='passenger')
+	{
+		redirect: window.location.replace("../driver/rides.html")
+	}
+	else if(window.localStorage.getItem('user_type') === 'passenger' && pathArray[pathArray.length -2] ==='driver'){
+		redirect: window.location.replace("../passenger/rides.html")
 	}
 }
 
 function logout(){
 	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
-		alert("Your not logged in yet.");
+		redirectUser()
 	}
 	else{
 		window.localStorage.getItem('firstname');
@@ -127,19 +146,24 @@ function logout(){
 		})
 		.then((result) => result.json())
 		.then((data) => {
+			confirm(data.message)
 			window.localStorage.removeItem('firstname');
 			window.localStorage.removeItem('token');
+			window.localStorage.removeItem('user_type')
 			redirect: window.location.replace('../index.html');
 		})
+		.catch(error => alert(error))
 	}
 }
 
 function myRides(){
-	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
-		redirect : window.location.replace('../index.html')
+	var token = window.localStorage.getItem('token')
+	if(window.localStorage.getItem('firstname') === "" || token ==="" || token == null){
+		redirectUser()
 	}
 	else{
 		var statusCode;
+		resolveURL();
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
 		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides',{		
 			method: 'GET',
@@ -155,9 +179,7 @@ function myRides(){
 				return result.json()
 			}		
 			else if (result.status == 401){
-				result = confirm("You are not logged in or your access token expired.\
-				\nPress OK to go to login.")
-				redirect : window.location.replace('../index.html')
+				redirectUser()
 			}
 			})
 		.then((data) =>{
@@ -198,12 +220,22 @@ function myRides(){
 				document.getElementById('myoffers').innerHTML = output;
 			}
 		})
+		.catch(error => alert(error))
 	}	
 }
 
 function viewRequests(ride_id =""){
 	var urlParams = new URLSearchParams(window.location.search);
 	var ride_id = urlParams.get('ride_id')
+	if (ride_id == null){
+		confirm("You are not allowed to view this page directly.")
+		if (window.localStorage.getItem('user_type') === 'driver')
+		{
+			redirect: window.location.replace("../driver/rides.html")
+		}else{
+			redirect: window.location.replace("../passenger/rides.html")
+		}
+	}
 	document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
 	var url = `https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/${ride_id}/requests`
 	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
@@ -211,6 +243,11 @@ function viewRequests(ride_id =""){
 	}
 	else{
 		var statusCode;
+		var pathArray = window.location.pathname.split('/')
+		if(window.localStorage.getItem('user_type') === 'passenger' && pathArray[pathArray.length -2] ==='driver'){
+			confirm("You don't have permission to view this page. \nUpgrade your account to be a driver to have access to this page.")
+			redirect: window.location.replace("../passenger/rides.html")
+		}
 		fetch(url,{
 			method: 'GET',
 			headers:({
@@ -227,9 +264,7 @@ function viewRequests(ride_id =""){
 				document.getElementById('info').innerHTML = 'There is no request to your ride offer.';
 			}
 			else if(statusCode == 401){
-				result = confirm("You are not logged in or your access token expired.\
-				\nPress OK to go to login.")
-				redirect : window.location.replace('../index.html')
+				redirectUser()
 			}
 			else{
 				let output = '';
@@ -275,12 +310,14 @@ function viewRequests(ride_id =""){
 				document.getElementById('requests').innerHTML = output;
 			}
 		})
+		.catch(error => alert(error))
 	}
 }
 
 function actOnRequest(requestId,action){
-	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
-		redirect : window.location.replace('../index.html')
+	var token = wondow.localStorage.getItem('token')
+	if(window.localStorage.getItem('firstname') === "" || token ==="" || token == null){
+		redirectUser()
 	}
 	else{
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
@@ -309,6 +346,7 @@ function actOnRequest(requestId,action){
 			alert(data.message)
 			window.location.reload()
 		})
+		.catch(error => alert(error))
 	
 	}
 }
@@ -371,6 +409,7 @@ function editRide(ride_id){
 			}
 			
 		})
+		.catch(error => alert(error))
 		
 	}
 }
@@ -394,6 +433,7 @@ function deleteRide(ride_id){
 			window.alert("Ride offer has been deleted.")
 			window.location.reload()
 		})
+		.catch(error => alert(error))
 	}
 }
 
@@ -458,7 +498,7 @@ function myRequests(){
 				document.getElementById('myrequests').innerHTML = output;
 			}
 		})
-		.catch(error => console.log(error))
+		.catch(error => alert(error))
 	}	
 }
 
@@ -499,9 +539,7 @@ function manageRequest(requestId, action){
 			alert(data.message)
 			window.location.reload()
 		})
-		.catch(err =>{
-			console.log(err)
-		})
+		.catch(error => alert(error))
 		
 	}
 }
@@ -546,9 +584,7 @@ function myProfile(){
 			}
 			document.getElementById('userDetails').innerHTML = output
 		})
-		.catch(err => {
-			console.log(err)
-		})
+		.catch(error => alert(error))
 
 	}
 }
@@ -585,6 +621,7 @@ function upgrade(){
 					redirect : window.location.replace('../driver/profile.html')
 				}
 			})
+			.catch(error => alert(error))
 		}
 	}
 }
