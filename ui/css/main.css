@@ -126,8 +126,9 @@ form{
 
 input[type=text], input[type=password], input[type=email], button[type=submit]{
     display: inline-block;
-
-    
+}
+input{
+    border-radius: 5px;
 }
 label{
     width: 40%;
@@ -180,6 +181,9 @@ footer{
     height: 8%
 
 }
+.navbar li a, select, #frm_filter input, #frm_filter button{
+    font: 0.9em sans-serif;
+}
 .navbar, footer, li a, button, h1 a,h3 a{
     color: #fff;
     font-weight: bold;
@@ -194,11 +198,11 @@ footer{
     border-radius: 5px;
 }
 
-a:hover, a.active{
+a:hover, a.active, select{
     background-color:#fff;
     color: #32936f !important;
 }
-.btn-primary,h1 a,h3 a{
+.btn-primary,h1 a,h3 a, select option{
     background-color:#32936f;
 }
 a {
