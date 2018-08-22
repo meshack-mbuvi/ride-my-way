@@ -4,43 +4,38 @@
 	<!--Make width of page follow the screen-width of the device-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="UTF-8">
-	
+
 	<link rel="stylesheet" href="../css/main.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!--Link for custom styles-->
 	<title>Ride offers</title>
-	<script type="text/javascript" src="../js/main.js"></script>	
+	<script type="text/javascript" src="../js/main.js"></script>
 </head>
 <body onload="retrieveRides()">
 	<div class="container">
 		<div class="row navbar" id=myNav>
 			<div class="col-sm-12 col-md-12">
 				<ul>
-					<li><a href="./rides.html"><i class="fa fa-home "></i>|</a></li>
+					<li><a href="./rides.html"><i class="fa fa-home "></i> Home</a></li>
 					<li><a href="./myrequests.html">My requests</a></li>
-				    <li><a href="./myrides.html"></i>My rides</a></li>
-				    <li><a href="./myoffers.html"><i class="fa fa-car "></i>My offers</a></li>
-				    <li><a href="./new_ride.html"><i class="fa fa-car "></i>offer new ride</a></li>
+				    <li><a href="./new_ride.html"><i class="fa fa-car "></i> Offer new ride</a></li>
 					<li class="right"><ul>
 				    	<li><a href="javascript:void(0);" onclick="logout()">Logout</a></li>
 				    	<li><a href="./profile.html" ><span id="profile">Profile</span></a></li>
-				    	
-				    </ul></li>				    
+				    </ul></li>
 					<li class="icon"><a href="javascript:void(0);" onclick="toggleResponsive()"><i class="fa fa-bars"></i></a></li>
-					
 				</ul>
 			</div>
 		</div>
 
 		<div class="row">
 				<div class="col-sm-12 col-md-3"></div>
-			<form id="frm_filter"><span class="label">Search by : </span> 
+			<form id="frm_filter"><span class="label">Search by : </span>
 				<select id="key">
 					<option value="destination">Destination</option>
 					<option value="start_point">Start Point</option>
 					<option value="route" >Route</option>
-					<option value="ride_id" >Ride ID</option>
-				  </select> <input type="text" placeholder="filter value" 
+				  </select> <input type="text" placeholder="filter value"
 				  style="margin-top:10px;" id="key_value">
 				  <button type="submit>" class="search" >Search</button>
 				 </form>
@@ -49,8 +44,8 @@
 			<div class="col-sm-12 col-md-2"></div>
 			<div class="header"><h1 id="info"></h1></div>
 		</div>
-		<!--ride offers-->		
-		<div class="row" id="rides">			
+		<!--ride offers-->
+		<div class="row" id="rides">
 		</div>
 	</div>
 
@@ -61,10 +56,8 @@
 
 		<!-- Modal content -->
 		<div class="modal-content">
-			
 			<div class="col-sm-12 text-center div-center div-with-border">
 				<form action="" method="POST" id="joinOffer">
-				
 					<div class="col-sm-12 ">
 						<label>Pick up point :</label>
 						<input type="text" name="start" id="pickUpPoint" required>
@@ -79,17 +72,13 @@
 					<div class="col-sm-12">
 
 						<button type="submit" name="submit" id="submit" class="btn-primary"><i class="fa fa-send-o fa-fw"></i>Save details</button>
-					</div>					               
-				
+					</div>
 				</form>
 			</div>
-			
 		</div>
 		<span class="close">&times;</span>
-	
 	</div>
-			
-	<!--provide extra space betwen container and footer-->
+	<!--provide extra space between container and footer-->
 	<div class="clear"></div>
 	<!--footer -->
 	<footer>
@@ -97,7 +86,6 @@
 	</footer>
 
 	<script type="text/javascript" src="../js/filter.js"></script>
-    
 </body>
 
 </html>

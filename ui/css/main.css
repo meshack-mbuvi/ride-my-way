@@ -164,22 +164,19 @@ a {
 .icon{
     display: none;
 }
-
 /*navbar,footer */
 .navbar, footer{
     padding: 0px;
     overflow: hidden;
     border-radius: 5px; 
     background-color: #32936f;
-    
 }
 footer{
     width: 99%;
     text-align: center;
     bottom: 0px !important;
     position: fixed;
-    height: 8%
-
+    height: 8%;
 }
 .navbar li a, select, #frm_filter input, #frm_filter button{
     font: 0.9em sans-serif;
@@ -274,14 +271,12 @@ a {
 /*style table*/
 table{
     width: 100%;
-    background-color: #e8fccf;
     border-radius: 5px;
     padding: 2px;
 }
 th{
     background-color: #32936f;
     color: #fff;
-    font-size: 1.3em;
     padding: 5px;
 }
 td{
@@ -301,16 +296,7 @@ td{
 .description{
     float: right;
 }
-.stars{
-    float: right;
-}
-.comments, .user-details{
-    border-bottom:1px solid;
-    margin-top: 5px;
-}
-.reviewer{
-    float: left;
-}
+
 th, td {
     text-align: center;
     border-bottom: 1px solid #ddd;
@@ -353,10 +339,6 @@ td a{
 td a.danger{
     background-color: Red;
 }
-i.fa-plus{
-    font-size: 3em;
-    text-align: center;
-}
 /* error message */
 .error p{
     color: red;
@@ -369,19 +351,21 @@ i.fa-plus{
     margin-left: 25%;
 }
 
-
-
 .modal{
     display: none;
     position: fixed;
     z-index: 1;
     overflow: auto;
     width: 50%;
-    height: 50%;
+    height: 70%;
+    margin-top: -18%;
     margin-left: 25%;
     margin-right: 25%;
     background-color: #629767;
     border-radius: 10px;
+}
+#joinRideModal{
+    margin-top: -5% ;
 }
 .modal-header{
     width: 100%;
@@ -423,4 +407,7 @@ i.fa-plus{
     border-radius:3px;
     border: 1px solid #32936f;
     height: 1.6em;
+}
+#frm_edit_offer div>label, #joinRideModal div>label{
+    color: #fff
 }

@@ -12,16 +12,14 @@
 
 	<script src="../js/main.js"></script>
 </head>
-<body onload="myProfile()">
+<body onload="myProfile();">
 	<div class="container">
 		<div class="row navbar" id=myNav>
 			<div class="col-sm-12">
 				<ul>
-					<li><a href="./rides.html"><i class="fa fa-home "></i>|</a></li>
+					<li><a href="./rides.html"><i class="fa fa-home"></i> Home</a></li>
 					<li><a href="./myrequests.html">My requests</a></li>
-				    <li><a href="./myrides.html"></i>My rides</a></li>
-				    <li><a href="./myoffers.html"><i class="fa fa-car "></i>My offers</a></li>
-				    <li><a href="./new_ride.html"><i class="fa fa-car "></i>offer new ride</a></li>
+				    <li><a href="./new_ride.html"><i class="fa fa-car "></i> Offer new ride</a></li>
 				    <li class="right"><ul>
 				    	<li><a href="javascript:void(0);" onclick="logout()">Logout</a></li>
 				    	<li><a href="./profile.html" ><span id="profile">Profile</span></a></li>				    	
@@ -34,15 +32,68 @@
 		<div class="row ">
 			<div class="col-sm-12 col-md-2"></div>
 			<div class="col-sm-12 col-md-8">
-				<div class="col-sm-12 col-md-3 user-photo">
-					<img src="../img/profile/user.png">
+				<div id="info"></div>
+				<div class="about col-sm-12 col-md-5" >
+					<div id="userDetails"></div>
 				</div>
-				<div class="about col-sm-12 col-md-9" id="userDetails">
+				<div class="col-sm-12 col-md-7 about">
+						<div id="usertype"></div>
+						<p id="ridesgiven"></p>
+						<p id="ridestaken"></p>
 				</div>
 			</div>
 			<div class="col-sm-12 col-md-2"></div>
 		</div>
-		
+		<!--ride offers-->
+		<div class="row rides">
+			<div class="col-sm-12 col-md-1"></div>
+			<div class="col-sm-12 col-md-10">
+				<div id="myoffers"></div>
+			</div>
+			<div class="col-sm-12 col-md-1"></div>
+		</div>
+
+		<!-- edit ride modal -->
+	<div id="editRideModal" class="modal">
+
+		<div class="modal-header div-center"><p class="text-center">Fill the form below</p></div>
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="col-sm-12 text-center div-center div-with-border">
+				<form action="driver.html" method="POST" id="frm_edit_offer">
+	                <div class="col-sm-12 ">
+	            		<label>Start point :</label>
+	                	<input type="text" name="start" id="start" required>
+					</div>
+					<div class="col-sm-12"><label for="destination">Destination : </label>
+						<input type="text" name="destination" id="destination" required>
+	                </div>
+					<div class="col-sm-12">
+						<label for="route">Ride Route :</label>
+					    <input type="text" id="route" placeholder="route" required>
+					</div>
+					<div class="col-sm-12 col-md-12">
+						<label >Ride Date : </label>
+						<input type="date" id="date">
+					</div>
+					<div class="col-sm-12 col-md-12">
+						<label>Ride start time : </label>
+						<input type="time" id="time" placeholder="Time">
+					</div>
+					<div class="col-sm-12">
+						<label for="avail_space">Available space :</label>
+					    <input type="number" id="avail_space" name="avail_space" placeholder="Available space" required>
+					</div>
+					<div class="col-sm-12">
+
+						<button type="submit" name="submit" id="submit" class="btn-primary"><i class="fa fa-send-o fa-fw"></i>Save details</button>
+					</div>
+            	</form>
+			</div>
+		</div>
+		<span class="close">&times;</span>
+	</div>
 	</div>
 	<!--provide extra space betwen container and footer-->
 	<div class="clear"></div>
@@ -51,7 +102,7 @@
 		<p>Mbuvi <i class="fa fa-copyright fa-fw"></i> 2018. All Rights Reserved.</p>
 	</footer>
     </div>
-    
+
 </body>
 
 </html>

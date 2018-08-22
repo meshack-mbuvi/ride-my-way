@@ -14,16 +14,14 @@
 	<!--JS files -->
 	<script type="text/javascript" src="../js/main.js"></script>
 </head>
-<body>
+<body onload="profile()">
 	<div class="container">
 		<div class="row navbar" id=myNav>
 			<div class="col-sm-12">
 				<ul>
-					<li><a href="./rides.html"><i class="fa fa-home "></i>Home</a></li>
+					<li><a href="./rides.html"><i class="fa fa-home "></i> Home</a></li>
 					<li><a href="./myrequests.html">My requests</a></li>
-				    <li><a href="./myrides.html"></i>My rides</a></li>
-				    <li><a href="./myoffers.html"><i class="fa fa-car "></i>My offers</a></li>
-				    <li><a href="./new_ride.html"><i class="fa fa-car "></i>offer new ride</a></li>
+				    <li><a href="./new_ride.html"></i> Offer new ride</a></li>
 				    <li class="right"><ul>
 				    	<li><a href="./index.html" onclick="logout()">Logout</a></li>
 				    	<li><a href="./profile.html" ><span id="profile">Profile</span></a></li>
@@ -41,7 +39,7 @@
 				
 			</div>
 			<div class="col-sm-12 col-md-4 text-center div-center div-with-border">
-			    <form action="driver.html" method="POST" id="new_offer">
+			    <form method="POST" id="new_offer">
                 
 	                <div class="col-sm-12 col-md-12">
 	                    <span class="label">Start point :</span>
@@ -56,9 +54,12 @@
 					    <input type="text" id="route" placeholder="route" required>
 					</div>
 					<div class="col-sm-12 col-md-12">
-						<span class="label">Time</span>
-						<input type="datetime" id="time" placeholder="Time" required>
-						<!--<input type="time" id="time" placeholder="Time" required>-->
+						<span class="label">Ride Date : </span>
+						<input type="date" id="date">
+					</div>
+					<div class="col-sm-12 col-md-12">
+						<span class="label">Ride start time : </span>
+						<input type="time" id="time" placeholder="Time">
 					</div>
 					<div class="col-sm-12">
 						<span class="label">Available space :</span>
@@ -81,8 +82,6 @@
 		<footer>
 			<p>Mbuvi <i class="fa fa-copyright fa-fw"></i> 2018. All Rights Reserved.</p>
 		</footer>
-
-		<script src="../js/new_ride.js"></script>
-    
+    <script src="../js/new_ride.js"></script>
 </body>
 </html>

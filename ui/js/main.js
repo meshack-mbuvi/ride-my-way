@@ -7,7 +7,7 @@ function toggleResponsive(){
 		elem.className = "row navbar";
 	}
 }
-// load rides 
+// load rides
 function retrieveRides(){
 	var token = window.localStorage.getItem('token')
 	if(window.localStorage.getItem('firstname') === "" || token ==="" || token == undefined){
@@ -17,7 +17,7 @@ function retrieveRides(){
 		var statusCode;
 		resolveURL();
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/rides',{		
+		fetch('http://0.0.0.0:5000/api/v1/rides',{
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -34,24 +34,26 @@ function retrieveRides(){
 				redirectUser();
 			}
 			else if (data.length == 0){
-				document.getElementById('info').innerHTML = "No ride offer at the moment." +  
+				document.getElementById('info').innerHTML = "No ride offer at the moment." +
 				"Please check again later."
 
 			}else{
 				let output = '';
-				data.forEach(ride => {			
-					output += `
+				data.forEach(ride => {
+					if(ride['available space'] > 0){
+						output += `
 					<div class="col-sm-12 col-md-3">
 						<div class="details">
 							<p><span class="label">Start point : </span><span> ${ride["start point"]}</span></p>
 							<p><span class="label">Destination : </span><span> ${ride.destination}</span></p>
-							<p><span class="label">Route : </span><span> ${ride.route}</span></p>					
+							<p><span class="label">Route : </span><span> ${ride.route}</span></p>
 							<p><span class="label">Start time : </span><span>${ride["start_time"]} </span></p>
 							<p><span class="label">Available seats : </span><span>${ride["available space"]} </span></p>
-							<button onclick="joinRide(${ride.id})" class="center btn-primary">Join offer</button>												
+							<button onclick="joinRide(${ride.id})" class="center btn-primary">Join offer</button>
 						</div>
 					</div>
 					`;
+					}
 
 				});
 				document.getElementById('rides').innerHTML = output;
@@ -59,7 +61,6 @@ function retrieveRides(){
 		})
 		.catch(error => alert(error))
 	}
-	
 }
 
 function joinRide(ride_id){
@@ -85,7 +86,7 @@ function joinRide(ride_id){
 		let seats = document.getElementById('seatsBooked').value;
 
 		var statusCode;
-		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/rides/'+parseInt(ride_id) +'/requests',{
+		fetch('http://0.0.0.0:5000/api/v1/rides/'+parseInt(ride_id) +'/requests',{
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -109,13 +110,12 @@ function joinRide(ride_id){
 			window.alert(data.message)
 			modal.style.display = "none";
 		})
-		.catch(error => alert(error))
-		
+		.catch(error => console.log(error))
 	}
 }
 
 function redirectUser(){
-	confirm("You are not logged in. Please not that you will be redirected to login page when you close the dialog.")
+	confirm("You are not logged in. Please not that you will be redirected to login page when you close this dialog.")
 	redirect : window.location.replace('../index.html')
 }
 
@@ -136,7 +136,7 @@ function logout(){
 	}
 	else{
 		window.localStorage.getItem('firstname');
-		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/auth/logout',{		
+		fetch('http://0.0.0.0:5000/api/v1/auth/logout',{
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -165,7 +165,7 @@ function myRides(){
 		var statusCode;
 		resolveURL();
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides',{		
+		fetch('http://0.0.0.0:5000/api/v1/users/rides',{
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -177,7 +177,7 @@ function myRides(){
 			statusCode = result.status
 			if (result.status == 200){
 				return result.json()
-			}		
+			}
 			else if (result.status == 401){
 				redirectUser()
 			}
@@ -185,7 +185,7 @@ function myRides(){
 		.then((data) =>{
 			if (statusCode == 404){
 				document.getElementById('info').innerHTML =
-				 "You don't have any active ride offer now."
+				 "<span class='label center'>You don't have any active ride offer now.</span>"
 
 			}else{
 				let output = `<table><tr>
@@ -194,41 +194,78 @@ function myRides(){
 					<th>Destination</th>
 					<th>Route</th>
 					<th>Start Time</th>
-					<th>Request count</th>
+					<th>Requests</th>
 					<th>Action</th>
 				</tr>`;
-				data.forEach(ride => {			
+				var successful = 0;
+				data.forEach(ride => {
+					console.log(ride)
 					output += `
 					<tr>
 					    <td>${ride.id}</td>
 						<td>${ride["start point"]}</td>
 						<td>${ride.destination}</td>
-						<td>${ride.route}</td>					
-						<td>${ride["start_time"]} </td>
+						<td>${ride.route}</td>
+						<td>${ride.start_time} </td>
 						<td><a href="./requests.html?ride_id=${ride.id}" \
 						   onclick="viewRequests(${ride.id})">${ride['request count']}</a></td>
-						<td><a href="javascript:void(0);" onclick="editRide(${ride.id})">
-							<i class="fa fa-edit"></i></a>
-							<a href="javascript:void(0);" onclick="deleteRide(${ride.id})" class="danger">
+						<td><a href="javascript:void(0);" onclick="editRide(${ride.id},'${ride['start point']}', '${ride.destination}','${ride.route}', '${ride.start_time}',${ride['Available space']})">
+							<i class="fa fa-edit"></i></a>`
+							if(ride.successful === false){
+								output += `<a href="javascript:void(0);" onclick="updateRideStatus(${ride.id}, 'successful')">
+										<i class="fa fa-times"></i></a>`
+								}
+							else if(ride.successful === true){
+								output += `<a href="javascript:void(0);" onclick="updateRideStatus(${ride.id}, 'unsuccessful')">
+										<i class="fa fa-check"></i></a>`
+							}
+							output +=`<a href="javascript:void(0);" onclick="deleteRide(${ride.id})" class="danger">
 							<i class="fa fa-trash"></i></a>
-
 						</td>
 					</tr>
 					`;
+					if(ride.successful == true){
+						successful +=1;
+					}
 				});
 				output += '</table>';
+				document.getElementById('ridesgiven').innerHTML = `<span class="label">Number of rides given :</span> ${successful}`
 				document.getElementById('myoffers').innerHTML = output;
+
 			}
 		})
-		.catch(error => alert(error))
-	}	
+		.catch(error => console.log(error))
+	}
 }
 
-function viewRequests(ride_id =""){
+function updateRideStatus(rideId, status){
+	if(status == 'unsuccessful'){
+		var status = false
+	}
+	else{
+		var status = true
+	}
+	console.log(status)
+	var statusCode;
+	fetch('http://0.0.0.0:5000/api/v1/users/rides/'+parseInt(rideId) + '?action='+status,{
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+		}
+	})
+	.then(result => result.json())
+	.then((data) => {
+		alert(data.message)
+		window.location.reload()
+	})
+	.catch(error => console.log(error))
+}
+
+function viewRequests(){
 	var urlParams = new URLSearchParams(window.location.search);
 	var ride_id = urlParams.get('ride_id')
 	if (ride_id == null){
-		confirm("You are not allowed to view this page directly.")
 		if (window.localStorage.getItem('user_type') === 'driver')
 		{
 			redirect: window.location.replace("../driver/rides.html")
@@ -237,7 +274,7 @@ function viewRequests(ride_id =""){
 		}
 	}
 	document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-	var url = `https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/${ride_id}/requests`
+	var url = `http://0.0.0.0:5000/api/v1/users/rides/${ride_id}/requests`
 	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
 		redirect : window.location.replace('../index.html')
 	}
@@ -261,7 +298,7 @@ function viewRequests(ride_id =""){
 		})
 		.then((data) => {
 			if(statusCode == 404){
-				document.getElementById('info').innerHTML = 'There is no request to your ride offer.';
+				document.getElementById('info').innerHTML = '<span class="label center">There is no request to your ride offer.</span>';
 			}
 			else if(statusCode == 401){
 				redirectUser()
@@ -293,17 +330,22 @@ function viewRequests(ride_id =""){
 						if(request['status'] == 'accepted'){
 							output += `<i class="fa fa-user-plus"></i>
 							<a href="javascript:void(0);" class="danger" onclick="actOnRequest(${request['Request Id']},'reject')"><i class="fa fa-user-times"></i></a>
+							<a href="javascript:void(0);" onclick="actOnRequest(${request['Request Id']},'taken')"><i class="fa fa-check"></i></a>
+							<a href="javascript:void(0);" onclick="actOnRequest(${request['Request Id']},'abandoned')"><i class="fa fa-times"></i></a>
 							</td></tr>`
-							
 						}else if(request['status'] == 'rejected'){
 							output += `<a href="javascript:void(0);" onclick="actOnRequest(${request['Request Id']},'accept')"><i class="fa fa-user-plus"></i></a>
 							<i class="fa fa-user-times"></i>
 							</td></tr>`
-						}						
+						}else if(request['status'] == 'taken'){
+							output += `<i class="fa fa-user-plus"></i>
+							<i class="fa fa-user-times"></i>
+							</td></tr>`
+						}
 						else{
 							output += `<a href="javascript:void(0);" onclick="actOnRequest(${request['Request Id']},'accept')"><i class="fa fa-user-plus"></i></a>
 							<a href="javascript:void(0);" class="danger" onclick="actOnRequest(${request['Request Id']},'reject')"><i class="fa fa-user-times"></i></a>
-							</td></tr>`							
+							</td></tr>`
 						}
 				});
 				output += `</table>`
@@ -315,13 +357,13 @@ function viewRequests(ride_id =""){
 }
 
 function actOnRequest(requestId,action){
-	var token = wondow.localStorage.getItem('token')
+	var token = window.localStorage.getItem('token')
 	if(window.localStorage.getItem('firstname') === "" || token ==="" || token == null){
 		redirectUser()
 	}
 	else{
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-		var url = `https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/requests/${requestId}?action=${action}`
+		var url = `http://0.0.0.0:5000/api/v1/users/rides/requests/${requestId}?action=${action}`
 		var statusCode
 		console.log(url)
 		fetch(url,{
@@ -347,16 +389,20 @@ function actOnRequest(requestId,action){
 			window.location.reload()
 		})
 		.catch(error => alert(error))
-	
 	}
 }
 
-function editRide(ride_id){
+function editRide(ride_id,startPoint, destination,route, startTime, availableSeats){
 	// open modal to join ride offer
 	var modal = document.getElementById('editRideModal')
 	var span = document.getElementsByClassName("close")[0];
 	// show modal dialog
 	modal.style.display = "block";
+	console.log(startPoint)
+	document.getElementById('start').value = startPoint
+	document.getElementById('destination').value = destination
+	document.getElementById('route').value = route
+	document.getElementById('avail_space').value = availableSeats
 	// When the user clicks on <span> (x), close the modal
 	span.onclick = function() {
 		modal.style.display = "none";
@@ -372,11 +418,12 @@ function editRide(ride_id){
 		let startPoint = document.getElementById('start').value;
 		let destination = document.getElementById('destination').value;
 		let route = document.getElementById('route').value;
-		let startTime = document.getElementById('time').value;
+		let rideDate = document.getElementById('date').value;
+    	let rideTime = document.getElementById('time').value;
 		let availableSeats = document.getElementById('avail_space').value;
 
 		var statusCode;
-		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/'+parseInt(ride_id),{
+		fetch('http://0.0.0.0:5000/api/v1/users/rides/'+parseInt(ride_id),{
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -386,7 +433,7 @@ function editRide(ride_id){
 				'start point':startPoint,
                 destination:destination,
                 route: route,
-                'start time': startTime,
+                'start time': rideDate + " " + rideTime,
                 'available space': parseInt(availableSeats)
 			})
 
@@ -407,18 +454,16 @@ function editRide(ride_id){
 				modal.style.display = "none";
 				window.location.reload()
 			}
-			
 		})
 		.catch(error => alert(error))
-		
 	}
 }
 
 function deleteRide(ride_id){
-	result = confirm("Are you sure you want to delete this offer?\nRemeber this action is irreversible")
+	result = confirm("Are you sure you want to delete this offer?\nRemember this action is irreversible")
 	if (result){
 		var statusCode;
-		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/'+parseInt(ride_id),{
+		fetch('http://0.0.0.0:5000/api/v1/users/rides/'+parseInt(ride_id),{
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
@@ -444,7 +489,7 @@ function myRequests(){
 	else{
 		var statusCode;
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/requests',{		
+		fetch('http://0.0.0.0:5000/api/v1/users/rides/requests',{
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -456,7 +501,7 @@ function myRequests(){
 			statusCode = result.status
 			if (result.status == 200){
 				return result.json()
-			}		
+			}
 			else if (result.status === 401){
 				result = confirm("You are not logged in or your access token expired.\
 				\nPress OK to go to login.")
@@ -464,42 +509,65 @@ function myRequests(){
 			}
 			})
 		.then((data) =>{
-			
 			if (statusCode == 404){
 				document.getElementById('info').innerHTML =
-				 "You don't have any request now."
+				 "You have not requested to join any ride offer."
 
 			}else{
 				let output = `<table><tr>
 					<th>#Id</th>
-					<th>Data Requested</th>
+					<th>Date Requested</th>
 					<th>Pick up point</th>
 					<th>Drop-off point</th>
 					<th>Status</th>
 					<th>Action</th>
 				</tr>`;
-				data.forEach(request => {			
+				data.forEach(request => {
 					output += `
 					<tr>
 						<td>${request["Request Id"]}</td>
 						<td>${request['Date Requested']}</td>
 						<td>${request["pick up point"]}</td>
 						<td>${request["drop-off point"]}</td>
-						<td>${request.status} </td>
+						<td>`
+						if(request.status === 'accepted'){
+							output += `<i class="fa fa-check"></i>`
+						}else if(request.status === 'pending'){
+							output += `---
+							<td><a href="javascript:void(0);" onclick="manageRequest(${request["Request Id"]},'edit')">
+							<i class="fa fa-edit"></i></a>
+							<a href="javascript:void(0);" class="danger" onclick="manageRequest(${request["Request Id"]},'del')">
+							<i class="fa fa-trash"></i></a>
+						</td>
+					</tr>`
+						}else if(request.status === 'rejected'){
+							output += `<i class="fa fa-times"></i>
+							<td><a href="javascript:void(0);" class="danger" onclick="manageRequest(${request["Request Id"]},'del')">
+							<i class="fa fa-trash"></i></a>
+						</td></tr>`
+						}else if(request.status === 'taken'){
+							output += `<i class="fa fa-check"></i>
+							<td>
+							<span class="label">No allowed action</span>
+						</td></tr>`
+						}
+						else{
+							output += `</td>
 						<td><a href="javascript:void(0);" onclick="manageRequest(${request["Request Id"]},'edit')">
 							<i class="fa fa-edit"></i></a>
-							<a href="javascript:void(0);" onclick="manageRequest(${request["Request Id"]},'del')">
-							<i class="fa fa-times"></i></a>
+							<a href="javascript:void(0);" class="danger" onclick="manageRequest(${request["Request Id"]},'del')">
+							<i class="fa fa-trash"></i></a>
 						</td>
 					</tr>
 					`;
+					}
 				});
 				output += '</table>';
 				document.getElementById('myrequests').innerHTML = output;
 			}
 		})
 		.catch(error => alert(error))
-	}	
+	}
 }
 
 function manageRequest(requestId, action){
@@ -516,7 +584,7 @@ function manageRequest(requestId, action){
 		else{
 			var method = 'PUT'
 		}
-		var url = `https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/requests/${requestId}`
+		var url = `http://0.0.0.0:5000/api/v1/users/rides/requests/${requestId}`
 		fetch(url, {
 			method: method,
 			headers: ({
@@ -540,18 +608,19 @@ function manageRequest(requestId, action){
 			window.location.reload()
 		})
 		.catch(error => alert(error))
-		
 	}
 }
 
 function myProfile(){
-	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
+	resolveURL()
+	var token = window.localStorage.getItem('token')
+	if(window.localStorage.getItem('firstname') === "" || token ==="" || token == undefined){
 		redirect : window.location.replace('../index.html')
 	}
 	else{
 		var statusCode;
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/auth/profile',{		
+		fetch('http://0.0.0.0:5000/api/v1/auth/profile',{
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -560,31 +629,31 @@ function myProfile(){
 
 		})
 		.then(result => {
-			if(result.status == 401){
-				res = confirm("Your session has expired.\nClick OK to go to login.")
-				if(res){
-					redirect : window.location.replace('../index.html')
-				}
-			}
-			else if(result.status == 200){
-				return result.json()
-			}
+			statusCode = result.status
+			return result.json()
 		})
 		.then(data =>{
-			var name =  + data.secondname.toUpperCase()
+			if(statusCode === 401){
+				redirectUser()
+			}
 			let output = `
-			<p><span class="label">Full Names : </span> ${data.firstname.toUpperCase()} 
+			<p><span class="label">Full Names : </span> ${data.firstname.toUpperCase()}
 					${data.secondname.toUpperCase()}</p>
-					<p><span class="label">Email</span> : ${data.email}</p>
-					<p><span class="label">Type : </span> ${data["user type"]}</p>
-					<p><span class="label">Phone Contact : </span> +254${data["phone number"]}</p>
+					<p><span class="label">Phone Contact : </span> ${data["phone number"]}</p>
+					<p><span class="label">Email Address</span> : ${data.email}</p>
 			`;
 			if(data['user type'] === 'passenger'){
-				output += '<h3><a href="javascript:void(0);" onclick="upgrade()">Click to upgrade to be a driver</a></h3>'
+				document.getElementById('upgrade').innerHTML = '<h4 class=""><a href="javascript:void(0);" onclick="upgrade()">Click here to upgrade to a driver account</a></h4>'
 			}
 			document.getElementById('userDetails').innerHTML = output
+			document.getElementById('usertype').innerHTML = `<p><span class="label">Account Type : </span> ${data["user type"]}</p>`
+			if(window.localStorage.getItem('user_type') === 'driver'){
+				myRides();
+			}
+			else
+			getRidesTaken();
 		})
-		.catch(error => alert(error))
+		.catch(error => console.log(error))
 
 	}
 }
@@ -598,13 +667,12 @@ function upgrade(){
 		else{
 			var statusCode;
 			document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-			fetch('https://ridemyway-carpool.herokuapp.com/api/v1/auth/upgrade?query=upgrade',{		
+			fetch('https://ridemyway-carpool.herokuapp.com/api/v1/auth/upgrade?query=upgrade',{
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
 					'Authorization': 'Bearer ' + window.localStorage.getItem('token')
 				}
-	
 			})
 			.then(result => {
 				statusCode = result.status
@@ -626,3 +694,31 @@ function upgrade(){
 	}
 }
 
+function getRidesTaken(){
+	fetch('http://0.0.0.0:5000/api/v1/users/rides/requests',{
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+			}
+
+		})
+		.then((result) => {
+			statusCode = result.status
+			return result.json()
+		})
+		.then((data) =>{
+			if (statusCode == 404){
+				document.getElementById('ridestaken').innerHTML =`<span class='label'>Number of rides taken : </span> 0`
+
+			}else{
+				var taken=0;
+				data.forEach(request => {
+					if(request.status === 'taken'){
+						taken += 1
+					}
+				});
+				document.getElementById('ridestaken').innerHTML =`<span class='label'>Number of rides taken : </span> ${taken}`
+			}
+		})
+}
