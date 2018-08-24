@@ -15,7 +15,7 @@ function signup(e){
     var status_code;
 
     // try signup
-    fetch('http://0.0.0.0:5000/api/v1/auth/signup', {
+    fetch('https://ridemyway-carpool.herokuapp.com/api/v1/auth/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -40,7 +40,6 @@ function signup(e){
         }
         else{
             window.location = './index.html';
-        }        
+        }
     });
 }
-// End of signup

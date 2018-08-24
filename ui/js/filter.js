@@ -14,7 +14,7 @@ function filter(e){
         filter_key = filter_key.options[filter_key.selectedIndex].value;
         var filter_value = document.getElementById('key_value').value;
         var url = `https://ridemyway-carpool.herokuapp.com/api/v1/rides?key=${filter_key}&${filter_key}=${filter_value}`
-        fetch(url,{		
+        fetch(url,{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,20 +39,19 @@ function filter(e){
                     document.getElementById('rides').innerHTML = "";
                 }else{
                     let output = '';
-                    data.forEach(ride => {			
+                    data.forEach(ride => {
                         output += `
                         <div class="col-sm-12 col-md-3">
                             <div class="details">
                                 <p><span class="label">Start point : </span><span> ${ride["start point"]}</span></p>
                                 <p><span class="label">Destination : </span><span> ${ride.destination}</span></p>
-                                <p><span class="label">Route : </span><span> ${ride.route}</span></p>					
+                                <p><span class="label">Route : </span><span> ${ride.route}</span></p>
                                 <p><span class="label">Start time : </span><span>${ride["start_time"]} </span></p>
                                 <p><span class="label">Available seats : </span><span>${ride["available space"]} </span></p>
-                                <button onclick="joinRide(${ride.id})" class="center btn-primary">Join offer</button>												
+                                <button onclick="joinRide(${ride.id})" class="center btn-primary">Join offer</button>
                             </div>
                         </div>
                         `;
-    
                     });
                     document.getElementById('info').innerHTML = "";
                     document.getElementById('rides').innerHTML = output;

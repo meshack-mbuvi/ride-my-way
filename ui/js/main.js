@@ -17,7 +17,7 @@ function retrieveRides(){
 		var statusCode;
 		resolveURL();
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-		fetch('http://0.0.0.0:5000/api/v1/rides',{
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/rides',{
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ function joinRide(ride_id){
 		let seats = document.getElementById('seatsBooked').value;
 
 		var statusCode;
-		fetch('http://0.0.0.0:5000/api/v1/rides/'+parseInt(ride_id) +'/requests',{
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/rides/'+parseInt(ride_id) +'/requests',{
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ function logout(){
 	}
 	else{
 		window.localStorage.getItem('firstname');
-		fetch('http://0.0.0.0:5000/api/v1/auth/logout',{
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/auth/logout',{
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -165,7 +165,7 @@ function myRides(){
 		var statusCode;
 		resolveURL();
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-		fetch('http://0.0.0.0:5000/api/v1/users/rides',{
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides',{
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -247,7 +247,7 @@ function updateRideStatus(rideId, status){
 	}
 	console.log(status)
 	var statusCode;
-	fetch('http://0.0.0.0:5000/api/v1/users/rides/'+parseInt(rideId) + '?action='+status,{
+	fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/'+parseInt(rideId) + '?action='+status,{
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -274,7 +274,7 @@ function viewRequests(){
 		}
 	}
 	document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-	var url = `http://0.0.0.0:5000/api/v1/users/rides/${ride_id}/requests`
+	var url = `https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/${ride_id}/requests`
 	if(window.localStorage.getItem('firstname') === "" || window.localStorage.getItem('token') ===""){
 		redirect : window.location.replace('../index.html')
 	}
@@ -363,7 +363,7 @@ function actOnRequest(requestId,action){
 	}
 	else{
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-		var url = `http://0.0.0.0:5000/api/v1/users/rides/requests/${requestId}?action=${action}`
+		var url = `https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/requests/${requestId}?action=${action}`
 		var statusCode
 		console.log(url)
 		fetch(url,{
@@ -423,7 +423,7 @@ function editRide(ride_id,startPoint, destination,route, startTime, availableSea
 		let availableSeats = document.getElementById('avail_space').value;
 
 		var statusCode;
-		fetch('http://0.0.0.0:5000/api/v1/users/rides/'+parseInt(ride_id),{
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/'+parseInt(ride_id),{
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -463,7 +463,7 @@ function deleteRide(ride_id){
 	result = confirm("Are you sure you want to delete this offer?\nRemember this action is irreversible")
 	if (result){
 		var statusCode;
-		fetch('http://0.0.0.0:5000/api/v1/users/rides/'+parseInt(ride_id),{
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/'+parseInt(ride_id),{
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
@@ -489,7 +489,7 @@ function myRequests(){
 	else{
 		var statusCode;
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-		fetch('http://0.0.0.0:5000/api/v1/users/rides/requests',{
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/requests',{
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -584,7 +584,7 @@ function manageRequest(requestId, action){
 		else{
 			var method = 'PUT'
 		}
-		var url = `http://0.0.0.0:5000/api/v1/users/rides/requests/${requestId}`
+		var url = `https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/requests/${requestId}`
 		fetch(url, {
 			method: method,
 			headers: ({
@@ -620,7 +620,7 @@ function myProfile(){
 	else{
 		var statusCode;
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-		fetch('http://0.0.0.0:5000/api/v1/auth/profile',{
+		fetch('https://ridemyway-carpool.herokuapp.com/api/v1/auth/profile',{
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -695,7 +695,7 @@ function upgrade(){
 }
 
 function getRidesTaken(){
-	fetch('http://0.0.0.0:5000/api/v1/users/rides/requests',{
+	fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides/requests',{
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',

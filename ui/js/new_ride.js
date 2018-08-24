@@ -22,7 +22,7 @@ function newRide(e){
 	}
 	else{
 		document.getElementById("profile").innerHTML = window.localStorage.getItem('firstname');
-        fetch('http://0.0.0.0:5000/api/v1/users/rides',{
+        fetch('https://ridemyway-carpool.herokuapp.com/api/v1/users/rides',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -6,7 +6,7 @@ function login(e){
     let password = document.getElementById('usr-password').value;
     var status_code;
 
-    fetch('http://0.0.0.0:5000/api/v1/auth/login', {
+    fetch('https://ridemyway-carpool.herokuapp.com/api/v1/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -86,8 +86,7 @@ function resetPassword(){
 			window.alert(data.message)
 			if(statusCode == 200){
 				modal.style.display = "none";
-			}			
+			}
 		})
-		
     }
 }
