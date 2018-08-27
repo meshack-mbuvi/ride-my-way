@@ -650,7 +650,6 @@ function myProfile(){
 			if(window.localStorage.getItem('user_type') === 'driver'){
 				myRides();
 			}
-			else
 			getRidesTaken();
 		})
 		.catch(error => console.log(error))
@@ -705,6 +704,7 @@ function getRidesTaken(){
 		})
 		.then((result) => {
 			statusCode = result.status
+			console.log(result)
 			return result.json()
 		})
 		.then((data) =>{
@@ -721,4 +721,5 @@ function getRidesTaken(){
 				document.getElementById('ridestaken').innerHTML =`<span class='label'>Number of rides taken : </span> ${taken}`
 			}
 		})
+		.catch(err=>console.log(err))
 }
