@@ -649,8 +649,11 @@ function myProfile(){
 			document.getElementById('usertype').innerHTML = `<p><span class="label">Account Type : </span> ${data["user type"]}</p>`
 			if(window.localStorage.getItem('user_type') === 'driver'){
 				myRides();
+				getRidesTaken();
+			}else{
+				getRidesTaken();
+
 			}
-			getRidesTaken();
 		})
 		.catch(error => console.log(error))
 
